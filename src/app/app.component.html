@@ -7,7 +7,14 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Document</title>
 </head>
-<body>
-    <app-login></app-login>
+<body class="bg-white">
+<div class="d-flex flex-column" style="height: 100vh;">
+  <div class="bg-primary" style="flex-shrink: 0;">
+      <app-navigation></app-navigation>
+  </div>
+  <div class="  flex-grow-1">
+    <router-outlet class="bg-info"></router-outlet>
+  </div>
+</div>
 </body>
 </html>

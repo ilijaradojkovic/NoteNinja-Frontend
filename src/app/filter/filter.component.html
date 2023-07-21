@@ -1,0 +1,48 @@
+<ul class="nav  w-100 nav-pills p-3 mb-3 rounded-pill align-items-center d-flex justify-content-between " style="background: aliceblue">
+  <div class="d-flex  ">
+    <li class="nav-item">
+      <a class="nav-link rounded-pill note-link d-flex align-items-center px-2 px-md-3 mr-0 me-md-2 " [ngClass]="{'active': activeNav===0,
+                                                                                                                  'text-white' :activeNav===0,
+                                                                                                                  'text-dark' : !(activeNav===0)
+                                                                                                                  }"
+         id="all-category">
+        <i class="icon-layers mr-1"></i><span class="d-none d-md-block " (click)="filterChanged(0)" >All Notes</span>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link rounded-pill note-link d-flex align-items-center px-2 px-md-3 mr-0 mr-md-2  " [ngClass]="{'active': activeNav===1,
+                                                                                                                  'text-white' :activeNav===1,
+                                                                                                                  'text-dark' : !(activeNav===1)
+                                                                                                                  }"
+         id="note-business"> <i class="icon-briefcase mr-1"></i><span class="d-none d-md-block"  (click)="filterChanged(1)" >Business</span></a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link rounded-pill note-link d-flex align-items-center px-2 px-md-3 mr-0 mr-md-2"  id="note-social"[ngClass]="{'active': activeNav===2,
+                                                                                                                  'text-white' :activeNav===2,
+                                                                                                                  'text-dark' : !(activeNav===2)
+                                                                                                                  }">
+        <i class="icon-share-alt mr-1"></i><span class="  d-none d-md-block"  (click)="filterChanged(2)"  >Social</span></a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link rounded-pill note-link d-flex align-items-center px-2 px-md-3 mr-0 mr-md-2" [ngClass]="{'active': activeNav===3,
+                                                                                                                  'text-white' :activeNav===3,
+                                                                                                                  'text-dark' : !(activeNav===3)
+                                                                                                                  }"
+         id="note-important"> <i class="icon-tag mr-1"></i><span class="d-none d-md-block" (click)="filterChanged(3)" >Important</span></a>
+    </li>
+  </div>
+
+  <div class="d-flex justify-content-end flex-fill align-items-center">
+    <div class="w-100 d-flex mx-5  justify-content-end">
+      <div class="input-group w-25  align-items-center">
+        <input type="text" class="form-control border-1 border-dark bg-transparent" placeholder="Search"
+               aria-label="Search" aria-describedby="basic-addon1">
+      </div>
+    </div>
+    <div class="col-2">
+      <button class="btn  rounded-5 text-white  " style="background: #917FB3">Add Notes</button>
+    </div>
+
+  </div>
+
+</ul>
