@@ -1,34 +1,34 @@
 <ul class="nav  w-100 nav-pills p-3 mb-3 rounded-pill align-items-center d-flex justify-content-between " style="background: aliceblue">
   <div class="d-flex  ">
     <li class="nav-item">
-      <a class="nav-link rounded-pill  btn  note-link d-flex align-items-center px-2 px-md-3 mr-0 me-md-2 " [ngClass]="{'active': activeNav===0,
-                                                                                                                  'text-white' :activeNav===0,
-                                                                                                                  'text-dark' : !(activeNav===0)
+      <a class="nav-link rounded-pill  btn  note-link d-flex align-items-center px-2 px-md-3 mr-0 me-md-2 " [ngClass]="{'active': isNoteType(NoteType.ALL),
+                                                                                                                  'text-white' :isNoteType(NoteType.ALL),
+                                                                                                                  'text-dark' : isNotNoteType(NoteType.ALL)
                                                                                                                   }"
          id="all-category">
-        <i class="icon-layers mr-1 "></i><span class="d-none d-md-block " (click)="filterChanged(0)" >All Notes</span>
+        <i class="icon-layers mr-1 "></i><span class="d-none d-md-block " (click)="filterChanged(NoteType.ALL)" >All Notes</span>
       </a>
     </li>
     <li class="nav-item">
-      <a class="nav-link btn rounded-pill note-link d-flex align-items-center px-2 px-md-3 mr-0 mr-md-2  " [ngClass]="{'active': activeNav===1,
-                                                                                                                  'text-white' :activeNav===1,
-                                                                                                                  'text-dark' : !(activeNav===1)
+      <a class="nav-link btn rounded-pill note-link d-flex align-items-center px-2 px-md-3 mr-0 mr-md-2  " [ngClass]="{'active':  isNoteType(NoteType.BUSINESS),
+                                                                                                                  'text-white' : isNoteType(NoteType.BUSINESS),
+                                                                                                                  'text-dark' :  isNotNoteType(NoteType.BUSINESS)
                                                                                                                   }"
-         id="note-business"> <i class="icon-briefcase mr-1"></i><span class="d-none d-md-block"  (click)="filterChanged(1)" >Business</span></a>
+         id="note-business"> <i class="icon-briefcase mr-1"></i><span class="d-none d-md-block"  (click)="filterChanged(NoteType.BUSINESS)" >Business</span></a>
     </li>
     <li class="nav-item">
-      <a class="nav-link btn rounded-pill note-link d-flex align-items-center px-2 px-md-3 mr-0 mr-md-2"  id="note-social"[ngClass]="{'active': activeNav===2,
-                                                                                                                  'text-white' :activeNav===2,
-                                                                                                                  'text-dark' : !(activeNav===2)
+      <a class="nav-link btn rounded-pill note-link d-flex align-items-center px-2 px-md-3 mr-0 mr-md-2"  id="note-social"[ngClass]="{'active': isNoteType(NoteType.SOCIAL),
+                                                                                                                  'text-white' :isNoteType(NoteType.SOCIAL),
+                                                                                                                  'text-dark' : isNotNoteType(NoteType.SOCIAL),
                                                                                                                   }">
-        <i class="icon-share-alt mr-1"></i><span class="  d-none d-md-block"  (click)="filterChanged(2)"  >Social</span></a>
+        <i class="icon-share-alt mr-1"></i><span class="  d-none d-md-block"  (click)="filterChanged(NoteType.SOCIAL)"  >Social</span></a>
     </li>
     <li class="nav-item">
-      <a class="nav-link btn rounded-pill note-link d-flex align-items-center px-2 px-md-3 mr-0 mr-md-2" [ngClass]="{'active': activeNav===3,
-                                                                                                                  'text-white' :activeNav===3,
-                                                                                                                  'text-dark' : !(activeNav===3)
+      <a class="nav-link btn rounded-pill note-link d-flex align-items-center px-2 px-md-3 mr-0 mr-md-2" [ngClass]="{'active':isNoteType(NoteType.IMPORTANT),
+                                                                                                                  'text-white' :isNoteType(NoteType.IMPORTANT),
+                                                                                                                  'text-dark' : isNotNoteType(NoteType.IMPORTANT),
                                                                                                                   }"
-         id="note-important"> <i class="icon-tag mr-1"></i><span class="d-none d-md-block" (click)="filterChanged(3)" >Important</span></a>
+         id="note-important"> <i class="icon-tag mr-1"></i><span class="d-none d-md-block" (click)="filterChanged(NoteType.IMPORTANT)" >Important</span></a>
     </li>
   </div>
 

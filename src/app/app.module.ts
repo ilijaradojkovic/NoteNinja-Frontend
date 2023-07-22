@@ -13,6 +13,7 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import {NotesService} from "./service/notes.service";
 import {HttpClientModule} from "@angular/common/http";
 import { HomeComponent } from './home/home.component';
+import { LongTextPipe } from './long-text.pipe';
 
 
 const  routes:Routes=[
@@ -31,7 +32,8 @@ const  routes:Routes=[
     FilterComponent,
     NavigationComponent,
     PageNotFoundComponent,
-    HomeComponent
+    HomeComponent,
+    LongTextPipe
   ],
   imports: [
     BrowserModule,

@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import {Component, EventEmitter, Output} from '@angular/core';
+import {NoteType} from "../models/note-type";
+import {Note} from "../models/note";
 
 @Component({
   selector: 'app-filter',
@@ -7,11 +9,22 @@ import { Component } from '@angular/core';
 })
 export class FilterComponent {
 
-  public activeNav:number=0;
+  public activeNoteType:NoteType=NoteType.ALL;
 
-  filterChanged(number: number) {
-    console.log(`namestam ${number}`)
-    this.activeNav=number;
+  @Output() activeNoteTypeEvent:EventEmitter<NoteType>=new EventEmitter();
+  filterChanged(noteType: NoteType) {
+    this.activeNoteType=noteType;
+    this.activeNoteTypeEvent.emit(noteType);
 
   }
+
+  public  isNoteType(noteType:NoteType){
+    return this. activeNoteType===noteType;
+  }
+    public  isNotNoteType(noteType:NoteType){
+    return this. activeNoteType!=noteType;
+  }
+
+  protected readonly NoteType = NoteType;
+
 }

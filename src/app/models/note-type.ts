@@ -1,5 +1,6 @@
 export enum NoteType {
-  BUSINESS,
-  SOCIAL,
-  IMPORTANT
+  ALL="ALL",
+  BUSINESS="BUSINESS",
+  SOCIAL="SOCIAL",
+  IMPORTANT="IMPORTANT"
 }
