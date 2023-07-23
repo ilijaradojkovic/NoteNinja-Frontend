@@ -45,6 +45,18 @@ export class NotesService {
     }
 
   }
+  deleteNote(noteId:string){
+    this.http.delete('http://localhost:8080/notes/'+noteId).pipe(
+      tap(console.log),
+      catchError(this.handleError)
+    ).subscribe((next)=>{
+      this.notes$.next(this.http.get<CustomResponse>(`http://localhost:8080/notes?page=${this.page}&search=${this.search}&note_type=${this.noteType}`).pipe(
+          tap(console.log),
+          catchError(this.handleError)
+        )
+      )
+    })
+  }
  private getRequestForAllNotes(){
    this.notes$.next(this.http.get<CustomResponse>(`http://localhost:8080/notes?page=${this.page}&search=${this.search}&note_type=${this.noteType}`).pipe(
        tap(console.log),
@@ -52,4 +64,5 @@ export class NotesService {
      )
    )
  }
+
 }
