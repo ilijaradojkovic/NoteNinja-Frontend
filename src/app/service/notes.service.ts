@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpErrorResponse} from "@angular/common/http";
-import {catchError, map, Observable, tap, throwError} from "rxjs";
+import {BehaviorSubject, catchError, map, Observable, tap, throwError} from "rxjs";
 import {CustomResponse} from "../models/custom-response";
 import {NoteType} from "../models/note-type";
 
@@ -11,12 +11,17 @@ export class NotesService {
   private page:number=0;
   private search:string='';
 
-  public notes$:Observable<CustomResponse>=<Observable<CustomResponse>>this.http.get<CustomResponse>(`http://localhost:8080/notes?page=${this.page}&search=${this.search}`).pipe(
-    tap(console.log),
-    catchError(this.handleError)
-  )
+  public notes$:BehaviorSubject<Observable<CustomResponse>> = new BehaviorSubject(new Observable<CustomResponse>()) ;
 
-  constructor(private http:HttpClient) { }
+
+  constructor(private http:HttpClient) {
+    this.notes$.next(
+      <Observable<CustomResponse>>this.http.get<CustomResponse>(`http://localhost:8080/notes?page=${this.page}&search=${this.search}`).pipe(
+        tap(console.log),
+        catchError(this.handleError)
+      )
+    );
+  }
 
   private handleError(error: HttpErrorResponse) {
     console.log(error);
@@ -24,9 +29,11 @@ export class NotesService {
   }
 
   noteTypeChanged(activeNoteType: NoteType) {
-    this.notes$=this.http.get<CustomResponse>(`http://localhost:8080/notes?page=${this.page}&search=${this.search}&note_type=${activeNoteType}`).pipe(
+
+   this.notes$.next( this.http.get<CustomResponse>(`http://localhost:8080/notes?page=${this.page}&search=${this.search}&note_type=${activeNoteType}`).pipe(
       tap(console.log),
       catchError(this.handleError)
     )
+   )
   }
 }

@@ -18,18 +18,26 @@ export class NoteListComponent implements OnInit{
   constructor(private noteService:NotesService) {}
 
   ngOnInit(): void {
-    this.appState$=this.noteService.notes$.pipe(
-      map(response=>{
-        return {
-          dataState: DataState.LOADED_STATE,
-          appData:{...response,data:{notes:response.data.notes?.reverse()}}
-        }
-      }),
-      startWith({dataState:DataState.LOADING_STATE}),
-      catchError((error:string)=>{
-        return of({dataState:DataState.ERROR_STATE,error:error})
+    this.noteService.notes$.subscribe((next)=>{
+      console.log(next);
     })
-    )
+
+    this.noteService.notes$.subscribe(next=>{
+
+      this.appState$=next.pipe(
+        map(response=>{
+          return {
+            dataState: DataState.LOADED_STATE,
+            appData:{...response,data:{notes:response.data.notes?.reverse()}}
+          }
+        }),
+        startWith({dataState:DataState.LOADING_STATE}),
+        catchError((error:string)=>{
+          return of({dataState:DataState.ERROR_STATE,error:error})
+        })
+      )
+    });
+
 
   }
 
