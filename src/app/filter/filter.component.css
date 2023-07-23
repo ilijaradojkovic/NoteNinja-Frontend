@@ -5,3 +5,6 @@
 .nav-item > a:hover {
   color: #2A2F4F;
 }
+input{
+  outline:none;
+}

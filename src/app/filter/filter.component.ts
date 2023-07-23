@@ -9,13 +9,22 @@ import {Note} from "../models/note";
 })
 export class FilterComponent {
 
-  public activeNoteType:NoteType=NoteType.ALL;
+   activeNoteType:NoteType=NoteType.ALL;
+   searchText:string=null;
 
   @Output() activeNoteTypeEvent:EventEmitter<NoteType>=new EventEmitter();
+  @Output() searchTextEvent:EventEmitter<string>=new EventEmitter();
+
   filterChanged(noteType: NoteType) {
     this.activeNoteType=noteType;
     this.activeNoteTypeEvent.emit(noteType);
 
+  }
+
+  searchTextChanged(search: HTMLInputElement){
+
+    this.searchText=search.value;
+    this.searchTextEvent.emit(search.value);
   }
 
   public  isNoteType(noteType:NoteType){

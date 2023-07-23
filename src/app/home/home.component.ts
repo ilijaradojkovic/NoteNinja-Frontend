@@ -10,14 +10,24 @@ import {NoteType} from "../models/note-type";
 export class HomeComponent {
 
   private activeNoteType:NoteType;
+  private searchText:string;
 
   constructor(private noteService:NotesService){}
 
   handleEmitedNoteType(noteType: NoteType) {
-    if(noteType!=this.activeNoteType) {
+
       this.activeNoteType = noteType;
       console.log(noteType);
       this.noteService.noteTypeChanged(this.activeNoteType);
-    }
+
+  }
+
+  handleEmitedSearchText(search: string) {
+
+      this.searchText=search;
+      this.noteService.noteSearchChanged(this.searchText);
+      console.log(search);
+
+
   }
 }
