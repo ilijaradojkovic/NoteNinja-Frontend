@@ -3,6 +3,8 @@ import {HttpClient, HttpErrorResponse} from "@angular/common/http";
 import {BehaviorSubject, catchError, Observable, tap, throwError} from "rxjs";
 import {CustomResponse} from "../models/custom-response";
 import {NoteType} from "../models/note-type";
+import {SaveNoteRequest} from "../models/save-note-request";
+import {UpdateNoteRequest} from "../models/update-note-request";
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +13,6 @@ export class NotesService {
   private page:number=0;
   private search:string='';
   private noteType:NoteType=NoteType.ALL;
-
   public notes$:BehaviorSubject<Observable<CustomResponse>> = new BehaviorSubject(new Observable<CustomResponse>()) ;
 
 
@@ -52,4 +53,28 @@ export class NotesService {
      )
    )
  }
+
+  saveNote(saveNoteRequest:SaveNoteRequest){
+   return  this.http.post('http://localhost:8080/notes',saveNoteRequest).pipe(
+      tap(console.log),
+      catchError(this.handleError)
+    )
+ }
+
+  updateNote(value: UpdateNoteRequest,noteId:string) {
+    this.http.put(`http://localhost:8080/notes/${noteId}`,value).subscribe();
+  }
+
+  getTotalItems() {
+    return this.http.get<CustomResponse>('http://localhost:8080/notes/total');
+  }
+
+
+  getNotesForPage(page:number){
+    //in front is displayed with +1
+    this.page=page-1;
+    this.notes$.next(
+      <Observable<CustomResponse>>this.http.get<CustomResponse>(`http://localhost:8080/notes?page=${this.page}&search=${this.search}`)
+  )
+  }
 }

@@ -1,0 +1,76 @@
+
+<div class="w-100 h-100  d-flex py-4">
+  <div class=" d-flex justify-content-center" style="flex:1">
+    <button type="button" class="btn btn-secondary" style="height: 50px;width: 50px" (click)="back()" >
+      <i class="fa-solid fa-arrow-left-long fa-lg"></i></button>
+  </div>
+  <div style="flex:1">
+    <form  #myform="ngForm" (ngSubmit)="updateNote(myform)">
+
+      <div class="modal-body">
+        <div class="notes-box">
+          <div class="notes-content">
+            <div class="row">
+              <div class="col-md-12 mb-3 ">
+                <div class="note-title">
+                  <label>Note Title</label>
+                  <input [(ngModel)]="note.title"  name="title"  type="text" id="title" class="form-control" minlength="25"
+                         placeholder="Title"/>
+                </div>
+              </div>
+
+              <div class="col-md-12 mb-3">
+                <div class="note-description">
+                  <label>Note Description</label>
+                  <textarea  name="description" [(ngModel)]="note.description"  id="note-has-description" class="form-control" minlength="60"
+                             placeholder="Description" rows="3"></textarea>
+                </div>
+              </div>
+              <div class="col-md-12 mb-3">
+                <div class="note-type">
+                  <label>Note Type</label>
+                  <select  name="noteType" [(ngModel)]="note.noteType" class="form-select" aria-label="Disabled select example">
+                    <option selected [value]="NoteType.BUSINESS">Business</option>
+                    <option [value]="NoteType.IMPORTANT">Important</option>
+                    <option [value]="NoteType.SOCIAL">Social</option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-md-12 mb-3">
+                <input   [(ngModel)]="note.isLocked" name="isLocked"
+                         #lockedInput class="form-check-input"
+                         type="checkbox"
+                         id="flexCheckDefault">
+                <label class="form-check-label mx-2" for="flexCheckDefault">
+                  Locked
+                </label>
+              </div>
+              <!--            <ng-container  *ngIf="note?.isLocked">-->
+              <!--              <div class="input-group mb-3">-->
+              <!--                <span class="input-group-text"><i class="fa fa-lock"></i></span>-->
+              <!--                <input  #passwordInput  class="form-control" id="password" name="password"-->
+              <!--                       placeholder="Password" type="password" [value]="note?.password">-->
+              <!--                <span class="input-group-text"><i  #passwordIcon class="fa fa-eye-slash" id="togglePassword" style="cursor: pointer"></i>-->
+              <!--   </span>-->
+              <!--              </div>-->
+              <!--            </ng-container>-->
+
+
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+
+        <button type="submit" class="btn text-white  ms-3" style="background: #2A2F4F">Update Note</button>
+      </div>
+    </form>
+  </div>
+
+
+  <div style="flex:1">
+
+  </div>
+</div>
+
+

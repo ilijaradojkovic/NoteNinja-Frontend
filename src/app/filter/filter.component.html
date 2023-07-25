@@ -40,13 +40,20 @@
     <div class="input-group w-50 mx-5 col-2 ">
       <input type="text" #searchTextInput class="form-control" placeholder="Search" aria-label="Recipient's username" aria-describedby="basic-addon2">
       <div class="input-group-append">
-        <button class="btn btn-outline-secondary" (click)="searchTextChanged(searchTextInput)" type="button">Search</button>
+        <button class="btn btn-outline-secondary" (click)="searchTextChanged(searchTextInput)" type="button">Search
+        </button>
       </div>
     </div>
     <div class="col-2">
-      <button class="btn  rounded-5 text-white  " style="background: #917FB3">Add Notes</button>
+      <button class="btn  rounded-5 text-white"
+              (click)="openSaveNoteModal()"
+              style="background: #917FB3">Add Notes
+      </button>
     </div>
 
   </div>
 
 </ul>
+
+
+

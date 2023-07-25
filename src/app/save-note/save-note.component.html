@@ -1,0 +1,64 @@
+<app-modal   title="Create Note" modalid="save-note-modal">
+  <form (ngSubmit)="saveNote(myform)"  #myform="ngForm">
+
+    <div class="modal-body">
+      <div class="notes-box">
+        <div class="notes-content">
+          <div class="row">
+            <div class="col-md-12 mb-3 ">
+              <div class="note-title">
+                <label>Note Title</label>
+                <input ngModel name="title" type="text" id="note-has-title" class="form-control" minlength="25"
+                       placeholder="Title"/>
+              </div>
+            </div>
+
+            <div class="col-md-12 mb-3">
+              <div class="note-description">
+                <label>Note Description</label>
+                <textarea name="description" ngModel id="note-has-description" class="form-control" minlength="60"
+                          placeholder="Description" rows="3"></textarea>
+              </div>
+            </div>
+            <div class="col-md-12 mb-3">
+              <div class="note-type">
+                <label>Note Type</label>
+                <select ngModel name="noteType" class="form-select" aria-label="Disabled select example">
+                  <option selected [value]="NoteType.BUSINESS">Business</option>
+                  <option [value]="NoteType.IMPORTANT">Important</option>
+                  <option [value]="NoteType.SOCIAL">Social</option>
+                </select>
+              </div>
+            </div>
+            <div class="col-md-12 mb-3">
+              <input ngModel name="isLocked" [(ngModel)]="isLockedNote" #lockedInput class="form-check-input"
+                     type="checkbox" value=""
+                     id="flexCheckDefault">
+              <label class="form-check-label mx-2" for="flexCheckDefault">
+                Locked
+              </label>
+            </div>
+            <ng-container *ngIf="isLockedNote">
+              <div class="input-group mb-3">
+                <span class="input-group-text"><i class="fa fa-lock"></i></span>
+                <input ngModel #passwordInput class="form-control" id="password" name="password"
+                       placeholder="Password" type="password" value="">
+                <span class="input-group-text">
+    <i (click)="lockedEyeClicked(passwordIcon,passwordInput)" #passwordIcon class="fa fa-eye-slash" id="togglePassword"
+       style="cursor: pointer"></i>
+   </span>
+              </div>
+            </ng-container>
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-secondary" (click)="closeModal()">Close</button>
+      <button type="submit" class="btn btn-primary ms-3">Create Note</button>
+    </div>
+  </form>
+</app-modal>
+

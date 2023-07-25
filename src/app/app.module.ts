@@ -14,12 +14,18 @@ import {NotesService} from "./service/notes.service";
 import {HttpClientModule} from "@angular/common/http";
 import { HomeComponent } from './home/home.component';
 import { LongTextPipe } from './long-text.pipe';
+import { ModalComponent } from './modal/modal.component';
+import {FormsModule} from "@angular/forms";
+import { SaveNoteComponent } from './save-note/save-note.component';
+import { NoteDetailsComponent } from './note-details/note-details.component';
+import {noteDetailsResolver} from "./resolver/note-details.resolver";
 
 
 const  routes:Routes=[
   {path:'',component:HomeComponent},
   {path:'home',component:HomeComponent},
   {path:'login',component:LoginComponent},
+  {path:'note/:id',component:NoteDetailsComponent,resolve: {note:noteDetailsResolver}},
   {path:'**',component:PageNotFoundComponent}
 ]
 @NgModule({
@@ -33,14 +39,18 @@ const  routes:Routes=[
     NavigationComponent,
     PageNotFoundComponent,
     HomeComponent,
-    LongTextPipe
+    LongTextPipe,
+    ModalComponent,
+    SaveNoteComponent,
+    NoteDetailsComponent
   ],
   imports: [
     BrowserModule,
     RouterOutlet,
     RouterModule.forRoot(routes),
     RouterLink,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [NotesService],
   bootstrap: [AppComponent]

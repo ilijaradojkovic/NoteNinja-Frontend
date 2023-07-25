@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import {NotesService} from "../service/notes.service";
 import {NoteType} from "../models/note-type";
+import {NgForm} from "@angular/forms";
+import {SaveNoteRequest} from "../models/save-note-request";
 
 @Component({
   selector: 'app-home',
@@ -27,7 +29,6 @@ export class HomeComponent {
       this.searchText=search;
       this.noteService.noteSearchChanged(this.searchText);
       console.log(search);
-
-
   }
+
 }

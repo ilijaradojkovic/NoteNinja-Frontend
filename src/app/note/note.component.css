@@ -135,3 +135,12 @@
     max-width: 216px
   }
 }
+
+.elevate-card{
+  transition: 500ms;
+}
+.elevate-card:hover{
+  transform: translateY(-20px);
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
+
+}
