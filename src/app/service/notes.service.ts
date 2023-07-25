@@ -19,7 +19,7 @@ export class NotesService {
   constructor(private http:HttpClient) {
     this.notes$.next(
       <Observable<CustomResponse>>this.http.get<CustomResponse>(`http://localhost:8080/notes?page=${this.page}&search=${this.search}`).pipe(
-        tap(console.log),
+        // tap(console.log),
         catchError(this.handleError)
       )
     );
@@ -42,13 +42,12 @@ export class NotesService {
     if(this.search!=search){
       this.search=search;
       this.getRequestForAllNotes();
-
     }
 
   }
  private getRequestForAllNotes(){
    this.notes$.next(this.http.get<CustomResponse>(`http://localhost:8080/notes?page=${this.page}&search=${this.search}&note_type=${this.noteType}`).pipe(
-       tap(console.log),
+       // tap(console.log),
        catchError(this.handleError)
      )
    )
@@ -56,7 +55,7 @@ export class NotesService {
 
   saveNote(saveNoteRequest:SaveNoteRequest){
    return  this.http.post('http://localhost:8080/notes',saveNoteRequest).pipe(
-      tap(console.log),
+      // tap(console.log),
       catchError(this.handleError)
     )
  }
@@ -66,15 +65,16 @@ export class NotesService {
   }
 
   getTotalItems() {
-    return this.http.get<CustomResponse>('http://localhost:8080/notes/total');
+    return this.http.get<CustomResponse>(`http://localhost:8080/notes/total?search=${this.search}&note_type=${this.noteType}`);
   }
 
 
   getNotesForPage(page:number){
     //in front is displayed with +1
     this.page=page-1;
+
     this.notes$.next(
-      <Observable<CustomResponse>>this.http.get<CustomResponse>(`http://localhost:8080/notes?page=${this.page}&search=${this.search}`)
-  )
+      <Observable<CustomResponse>>this.http.get<CustomResponse>(`http://localhost:8080/notes?page=${this.page}&search=${this.search}&note_type=${this.noteType}`)
+    )
   }
 }

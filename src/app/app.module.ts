@@ -19,6 +19,7 @@ import {FormsModule} from "@angular/forms";
 import { SaveNoteComponent } from './save-note/save-note.component';
 import { NoteDetailsComponent } from './note-details/note-details.component';
 import {noteDetailsResolver} from "./resolver/note-details.resolver";
+import { PaginationComponent } from './pagination/pagination.component';
 
 
 const  routes:Routes=[
@@ -42,7 +43,8 @@ const  routes:Routes=[
     LongTextPipe,
     ModalComponent,
     SaveNoteComponent,
-    NoteDetailsComponent
+    NoteDetailsComponent,
+    PaginationComponent
   ],
   imports: [
     BrowserModule,

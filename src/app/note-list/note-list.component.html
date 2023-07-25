@@ -1,12 +1,7 @@
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
-<div class="page-content container note-has-grid my-4">
- <div class="d-flex mb-5   align-items-center justify-content-center">
-   <i style="cursor: pointer" class="fa-solid  fa-lg  fa-chevron-left " (click)="backPage()"></i>
-   <div class="mx-4 ">
-     <span *ngFor="let i of numberArray" class="mx-1" style="cursor: pointer" [ngStyle]="{'color': (i+1===currentPage)? 'black': 'gray' }" (click)="toPage(i+1)">{{i+1}}</span>
+<div class="page-content container note-has-grid">
+ <div class="d-flex   align-items-center justify-content-center">
 
-   </div>
-   <i style="cursor: pointer" class="fa-solid fa-lg fa-chevron-right" (click)="nextPage()"></i>
  </div>
   <div class="tab-content ">
     <ng-container *ngIf="(appState$ | async) as appState">

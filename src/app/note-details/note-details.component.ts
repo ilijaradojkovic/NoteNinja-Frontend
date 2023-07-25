@@ -24,13 +24,13 @@ export class NoteDetailsComponent implements OnInit{
   ngOnInit(): void {
     this.activeRoute.data.subscribe(note=>{
       this.note=note["note"].data["note"] as NoteDetails;
-      console.log(this.note);
+      // console.log(this.note);
     })
   }
 
 
   updateNote(myform: NgForm) {
-      console.log(myform.value)
+      // console.log(myform.value)
       this.noteService.updateNote(myform.value as UpdateNoteRequest,this.note.id)
   }
 

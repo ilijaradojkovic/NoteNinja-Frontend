@@ -14,19 +14,13 @@ import {error} from "@angular/compiler-cli/src/transformers/util";
 export class NoteListComponent implements OnInit{
 
   appState$: Observable<AppState<CustomResponse>> = new Observable<AppState<CustomResponse>>();
-  totalItems:number=0;
-  itemsPerPage:number=10;
-  totalPages:number=0;
-  currentPage:number =1;
+
   constructor(private noteService:NotesService) {}
-  get numberArray(): number[] {
-    return Array.from({ length: this.totalPages  }, (_, index) => index);
-  }
+
   ngOnInit(): void {
     this.noteService.notes$.subscribe((next)=>{
-      console.log(next);
+      // console.log(next);
     })
-    this.getPageNumber();
 
     this.noteService.notes$.subscribe(next=>{
 
@@ -47,41 +41,5 @@ export class NoteListComponent implements OnInit{
 
   }
 
-  getPageNumber(){
-    this.noteService.getTotalItems().subscribe((total)=>{
 
-      this.totalItems=total.data['total'] as number;
-      this.totalPages=this.customRound(this.totalItems/this.itemsPerPage);
-      console.log(this.totalPages)
-    });
-  }
-
-   customRound(number: number): number {
-    const decimalPart = number - Math.floor(number);
-    const roundedDecimal = Math.ceil(decimalPart);
-
-    return Math.floor(number) + roundedDecimal;
-  }
-
-  backPage() {
-    this.currentPage--;
-    this.getNotesForCurrPage();
-  }
-
-  nextPage() {
-      this.currentPage++;
-    this.getNotesForCurrPage();
-  }
-
-
-  toPage(i: number) {
-    console.log(i);
-    this.currentPage=i;
-    this.getNotesForCurrPage();
-  }
-
-  getNotesForCurrPage(){
-    this.noteService.getNotesForPage(this.currentPage);
-
-  }
 }
