@@ -1,0 +1,7 @@
+<div
+  [style]="{'opacity': showAlert? 1 : 0 }"
+  class="alert my-alert alert-success position-absolute end-0 bottom-0" role="alert">
+{{message}}
+  <i  style="cursor: pointer" (click)="showAlert=false" class="fa-light fa-xmark"></i>
+</div>
+<!--<button class="btn btn-primary" (click)="showAlert=!showAlert">toggle</button>-->

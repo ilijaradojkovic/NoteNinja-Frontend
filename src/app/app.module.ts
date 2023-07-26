@@ -23,6 +23,7 @@ import { PaginationComponent } from './pagination/pagination.component';
 import {AuthInterceptor, AuthTokenInterceptor} from "./interceptor/auth-token.interceptor";
 import {LottieModule} from "ngx-lottie";
 import { RegisterComponent } from './signup/register.component';
+import { AlertComponent } from './alert/alert.component';
 
 export function playerFactory(): any {
   return import('lottie-web');
@@ -53,6 +54,7 @@ const  routes:Routes=[
     NoteDetailsComponent,
     PaginationComponent,
     RegisterComponent,
+    AlertComponent,
   ],
   imports: [
     BrowserModule,
