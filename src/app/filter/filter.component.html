@@ -1,38 +1,46 @@
-<ul class="nav  w-100 nav-pills p-3 mb-3 rounded-pill align-items-center d-flex justify-content-between "
-    style="background: aliceblue">
+<ul class="nav my-filter w-100 nav-pills p-3 mb-3  align-items-center d-flex justify-content-between "
+    >
   <div class="d-flex  ">
     <li class="nav-item">
-      <a class="nav-link rounded-pill  btn  note-link d-flex align-items-center px-2 px-md-3 mr-0 me-md-2 " [ngClass]="{'active': isNoteType(NoteType.ALL),
-                                                                                                                  'text-white' :isNoteType(NoteType.ALL),
-                                                                                                                  'text-dark' : isNotNoteType(NoteType.ALL)
+      <a class="nav-link rounded-pill  btn  note-link d-flex align-items-center px-2 px-md-3 mr-0 me-md-2 " [ngClass]="{'active': isNoteType(FilterNoteType.ALL),
+                                                                                                                  'text-white' :isNoteType(FilterNoteType.ALL),
+                                                                                                                  'text-dark' : isNotNoteType(FilterNoteType.ALL)
                                                                                                                   }"
          id="all-category">
-        <i class="icon-layers mr-1 "></i><span class="d-none d-md-block " (click)="filterChanged(NoteType.ALL)">All Notes</span>
+        <i class="icon-layers mr-1 "></i><span class="d-none d-md-block " (click)="filterChanged(FilterNoteType.ALL)">All Notes</span>
       </a>
     </li>
     <li class="nav-item">
-      <a class="nav-link btn rounded-pill note-link d-flex align-items-center px-2 px-md-3 mr-0 mr-md-2  " [ngClass]="{'active':  isNoteType(NoteType.BUSINESS),
-                                                                                                                  'text-white' : isNoteType(NoteType.BUSINESS),
-                                                                                                                  'text-dark' :  isNotNoteType(NoteType.BUSINESS)
+      <a class="nav-link btn rounded-pill note-link d-flex align-items-center px-2 px-md-3 mr-0 mr-md-2  " [ngClass]="{'active':  isNoteType(FilterNoteType.BUSINESS),
+                                                                                                                  'text-white' : isNoteType(FilterNoteType.BUSINESS),
+                                                                                                                  'text-dark' :  isNotNoteType(FilterNoteType.BUSINESS)
                                                                                                                   }"
          id="note-business"> <i class="icon-briefcase mr-1"></i><span class="d-none d-md-block"
-                                                                      (click)="filterChanged(NoteType.BUSINESS)">Business</span></a>
+                                                                      (click)="filterChanged(FilterNoteType.BUSINESS)">Business</span></a>
     </li>
     <li class="nav-item">
       <a class="nav-link btn rounded-pill note-link d-flex align-items-center px-2 px-md-3 mr-0 mr-md-2"
          id="note-social" [ngClass]="{'active': isNoteType(NoteType.SOCIAL),
-                                                                                                                  'text-white' :isNoteType(NoteType.SOCIAL),
-                                                                                                                  'text-dark' : isNotNoteType(NoteType.SOCIAL),
+                                                                                                                  'text-white' :isNoteType(FilterNoteType.SOCIAL),
+                                                                                                                  'text-dark' : isNotNoteType(FilterNoteType.SOCIAL),
                                                                                                                   }">
-        <i class="icon-share-alt mr-1"></i><span class="  d-none d-md-block" (click)="filterChanged(NoteType.SOCIAL)">Social</span></a>
+        <i class="icon-share-alt mr-1"></i><span class="  d-none d-md-block" (click)="filterChanged(FilterNoteType.SOCIAL)">Social</span></a>
     </li>
     <li class="nav-item">
-      <a class="nav-link btn rounded-pill note-link d-flex align-items-center px-2 px-md-3 mr-0 mr-md-2" [ngClass]="{'active':isNoteType(NoteType.IMPORTANT),
-                                                                                                                  'text-white' :isNoteType(NoteType.IMPORTANT),
-                                                                                                                  'text-dark' : isNotNoteType(NoteType.IMPORTANT),
+      <a class="nav-link btn rounded-pill note-link d-flex align-items-center px-2 px-md-3 mr-0 mr-md-2" [ngClass]="{'active':isNoteType(FilterNoteType.IMPORTANT),
+                                                                                                                  'text-white' :isNoteType(FilterNoteType.IMPORTANT),
+                                                                                                                  'text-dark' : isNotNoteType(FilterNoteType.IMPORTANT),
                                                                                                                   }"
          id="note-important"> <i class="icon-tag mr-1"></i><span class="d-none d-md-block"
-                                                                 (click)="filterChanged(NoteType.IMPORTANT)">Important</span></a>
+                                                                 (click)="filterChanged(FilterNoteType.IMPORTANT)">Important</span></a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link btn rounded-pill note-link d-flex align-items-center px-2 px-md-3 mr-0 mr-md-2" [ngClass]="{'active':isNoteType(FilterNoteType.FAVORITES),
+                                                                                                                  'text-white' :isNoteType(FilterNoteType.FAVORITES),
+                                                                                                                  'text-dark' : isNotNoteType(FilterNoteType.FAVORITES),
+                                                                                                                  }"
+         id="note-favorites"> <i class="icon-tag mr-1"></i><span class="d-none d-md-block"
+                                                                 (click)="filterChanged(FilterNoteType.FAVORITES)">Favorites</span></a>
     </li>
   </div>
 
@@ -40,13 +48,20 @@
     <div class="input-group w-50 mx-5 col-2 ">
       <input type="text" #searchTextInput class="form-control" placeholder="Search" aria-label="Recipient's username" aria-describedby="basic-addon2">
       <div class="input-group-append">
-        <button class="btn btn-outline-secondary searchButton" (click)="searchTextChanged(searchTextInput)" type="button">Search</button>
+        <button class="btn btn-outline-secondary" (click)="searchTextChanged(searchTextInput)" type="button">Search
+        </button>
       </div>
     </div>
     <div class="col-2">
-      <button class="btn  rounded-5 text-white  " style="background: #917FB3">Add Notes</button>
+      <button class="btn  rounded-5 text-white"
+              (click)="openSaveNoteModal()"
+              style="background: darksalmon">Add Notes
+      </button>
     </div>
 
   </div>
 
 </ul>
+
+
+

@@ -1,0 +1,7 @@
+export enum FilterNoteType {
+  ALL="ALL",
+  BUSINESS="BUSINESS",
+  SOCIAL="SOCIAL",
+  IMPORTANT="IMPORTANT",
+  FAVORITES="FAVORITES"
+}

@@ -5,6 +5,7 @@ export interface Note {
   title: string,
   description: string,
   createdAt: Date,
-  noteType: NoteType
+  noteType: NoteType,
+  isFavorite:boolean
 
 }

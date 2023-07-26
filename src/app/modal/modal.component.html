@@ -1,0 +1,20 @@
+<div class="w-100 h-100 bg-dark position-absolute top-0 start-0 end-0 bottom-0 z-2 opacity-25" [hidden]="isModalOpen()">
+
+</div>
+<div class="position-absolute   mx-auto my-auto top-0 bottom-0 start-0 end-0  w-50 h-50  "  [hidden]="isModalOpen()" [id]="modalid"   >
+  <div class="modal-dialog z-3 opacity-100 bg-da  ">
+    <div class="modal-content">
+      <div class="modal-header    p-3 " style="background: #2A2F4F;">
+        <h5 class="modal-title text-white" id="exampleModalLabel">{{title}}</h5>
+        <button type="button"  (click)="closeModal($event)" class="btn-close btn-close-white" aria-label="Close"></button>
+      </div>
+      <div class=" bg-white p-3">
+        <ng-content>
+        </ng-content>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+

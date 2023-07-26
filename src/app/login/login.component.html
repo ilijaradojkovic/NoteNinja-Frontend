@@ -11,7 +11,7 @@
         <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
 
           <h1 class="text-center" style="color: #2A2F4F">Sign in</h1>
-          <form>
+          <form #form="ngForm" (ngSubmit)="login(form) ">
 
 
             <div class="divider d-flex align-items-center my-4">
@@ -20,19 +20,36 @@
 
             <!-- Email input -->
             <div class="form-outline mb-4">
-              <input type="email" id="form3Example3" class="form-control form-control-lg"
+              <input email required
+                     #email="ngModel"
+                     [ngClass]="{'error-input': email.errors && email.touched }"
+
+                     name="email" ngModel
+                     type="email" id="email" class="form-control form-control-lg"
                      placeholder="Enter a valid email address"/>
-              <label class="form-label" for="form3Example3">Email address</label>
+              <label class="form-label" for="email">Email address</label>
             </div>
 
+
             <!-- Password input -->
+            <div class="form-outline mb-4">
+              <input required name="password"
+                     #password="ngModel"
+                     [ngClass]="{'error-input': password.errors && password.touched }"
+                     ngModel type="email" id="password" class="form-control form-control-lg"
+                     placeholder="Enter a valid email address"/>
+
+
+            <div class="d-flex justify-content-between">
+              <label class="form-label" for="password">Password</label>
+
+              <a href="#!" class="text-body">Forgot password?</a>
+            </div>
             <div class="form-outline mb-3">
-              <input type="password" id="form3Example4" class="form-control form-control-lg"
-                     placeholder="Enter password"/>
-              <div class="d-flex justify-content-between">
-                <label class="form-label" for="form3Example4">Password</label>
-                <a href="#!" class="text-body">Forgot password?</a>
-              </div>
+
+
+            </div>
+
 
 
             </div>
@@ -48,12 +65,18 @@
               <!--              <a href="#!" class="text-body">Forgot password?</a>-->
             </div>
 
+
             <div class="text-center text-lg-start mt-4 pt-2 d-flex justify-content-center flex-column">
-              <button type="button" class="btn btn-primary btn-lg w-100"
-                      style="padding-left: 2.5rem; padding-right: 2.5rem;background: #2A2F4F">Login
+              <button type="submit" class="btn btn-primary btn-lg w-100"
+                      style="padding-left: 2.5rem; padding-right: 2.5rem;background: #2A2F4F" [ngStyle]="{'disabled':loading
+
+                                                                                                                      }">
+                <span *ngIf="loading" class="loader"></span>
+
+                <span *ngIf="!loading">Login</span>
               </button>
               <div class="w-100  d-flex justify-content-center">
-                <p class="small fw-bold mt-2 pt-1 mb-0">Don't have an account? <a href="#!"
+                <p class="small fw-bold mt-2 pt-1 mb-0">Don't have an account? <a [routerLink]="['/register']"
                                                                                   class="link-danger">Register</a></p>
 
               </div>
