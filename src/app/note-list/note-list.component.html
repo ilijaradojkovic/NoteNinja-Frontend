@@ -4,7 +4,13 @@
 
  </div>
   <div class="tab-content ">
+
+
+
     <ng-container *ngIf="(appState$ | async) as appState">
+      <div *ngIf="appState.appData?.data.notes.length==0" class="d-flex justify-content-center">
+        <img src="assets/images/no_data.png" width="500px">
+      </div>
       <div id="note-full-container" class="note-has-grid  row w-100">
 
         <ng-container *ngIf="appState.appData?.data?.notes!=undefined">

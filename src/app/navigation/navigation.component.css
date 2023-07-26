@@ -1,3 +1,6 @@
-.active{
-  color: #2cd07e;
+.active-route{
+
+  background: darksalmon;
+  border-radius: 10px;
+
 }

@@ -12,6 +12,7 @@ export class NoteComponent implements OnInit{
 
   @Input() note:Note;
   noteColor:string='black';
+  noteColorTemp:string='black';
 
   constructor(private router:Router) {
   }

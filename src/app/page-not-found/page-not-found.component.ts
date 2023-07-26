@@ -10,7 +10,7 @@ export class PageNotFoundComponent {
 
   constructor(private router:Router) {
   }
-  navigateToHome() {
-    this.router.navigate(['home'])
+  navigateToNotes() {
+    this.router.navigate(['notes'])
   }
 }

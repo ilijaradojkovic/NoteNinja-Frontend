@@ -7,8 +7,16 @@
     </li>
   </div>
   <div class=" px-4 col-6 d-flex justify-content-end align-items-center">
-    <li class="nav-item"><a class="nav-link text-white" routerLinkActive="active"  routerLink="login">Login </a></li>
-    <li class="mx-4 nav-item"><a class="nav-link text-white" routerLinkActive="active" routerLink="home">Home </a></li>
+    <li class="nav-item ">
+      <a class="nav-link text-white" routerLinkActive="active-route"  routerLink="login" *ngIf="!(authService.isLogin$ | async) " [routerLinkActiveOptions]="{exact: true}">Login</a>
+    </li>
+    <li class="mx-4 nav-item">
+      <a class="nav-link text-white" routerLinkActive="active-route" routerLink="notes"  *ngIf="(authService.isLogin$ | async)" [routerLinkActiveOptions]="{exact: true}">Notes</a>
+    </li>
+
+    <li class="nav-item ms-3">
+      <a class="nav-link text-white" routerLinkActive="active-route"  routerLink="login" *ngIf="(authService.isLogin$ | async)" [routerLinkActiveOptions]="{exact: true}" (click)="logout()">Logout</a>
+    </li>
   </div>
 
 </ul>

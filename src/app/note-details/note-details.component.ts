@@ -35,6 +35,6 @@ export class NoteDetailsComponent implements OnInit{
   }
 
   back() {
-    this.router.navigate(['home'])
+    this.router.navigate(['notes'])
   }
 }

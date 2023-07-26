@@ -5,10 +5,10 @@ import {PaginationComponent} from "../pagination/pagination.component";
 
 @Component({
   selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  templateUrl: './notes.component.html',
+  styleUrls: ['./notes.component.css']
 })
-export class HomeComponent {
+export class NotesComponent {
 
   private activeNoteType:NoteType;
   private searchText: string;

@@ -12,7 +12,7 @@ import {RouterLink, RouterModule, RouterOutlet, Routes} from "@angular/router";
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import {NotesService} from "./service/notes.service";
 import {HttpClientModule} from "@angular/common/http";
-import { HomeComponent } from './home/home.component';
+import { NotesComponent } from './notes/notes.component';
 import { LongTextPipe } from './long-text.pipe';
 import { ModalComponent } from './modal/modal.component';
 import {FormsModule} from "@angular/forms";
@@ -20,11 +20,16 @@ import { SaveNoteComponent } from './save-note/save-note.component';
 import { NoteDetailsComponent } from './note-details/note-details.component';
 import {noteDetailsResolver} from "./resolver/note-details.resolver";
 import { PaginationComponent } from './pagination/pagination.component';
+import {AuthInterceptor, AuthTokenInterceptor} from "./interceptor/auth-token.interceptor";
+import {LottieModule} from "ngx-lottie";
 
+export function playerFactory(): any {
+  return import('lottie-web');
+}
 
 const  routes:Routes=[
-  {path:'',component:HomeComponent},
-  {path:'home',component:HomeComponent},
+  {path:'',component:NotesComponent},
+  {path:'notes',component:NotesComponent},
   {path:'login',component:LoginComponent},
   {path:'note/:id',component:NoteDetailsComponent,resolve: {note:noteDetailsResolver}},
   {path:'**',component:PageNotFoundComponent}
@@ -39,12 +44,12 @@ const  routes:Routes=[
     FilterComponent,
     NavigationComponent,
     PageNotFoundComponent,
-    HomeComponent,
+    NotesComponent,
     LongTextPipe,
     ModalComponent,
     SaveNoteComponent,
     NoteDetailsComponent,
-    PaginationComponent
+    PaginationComponent,
   ],
   imports: [
     BrowserModule,
@@ -52,9 +57,11 @@ const  routes:Routes=[
     RouterModule.forRoot(routes),
     RouterLink,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    LottieModule.forRoot({ player: playerFactory }),
+
   ],
-  providers: [NotesService],
+  providers: [NotesService,AuthInterceptor],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

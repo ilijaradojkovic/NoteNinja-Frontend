@@ -1,10 +1,11 @@
 import {Injectable} from '@angular/core';
-import {HttpClient, HttpErrorResponse} from "@angular/common/http";
+import {HttpClient, HttpErrorResponse, HttpHeaders} from "@angular/common/http";
 import {BehaviorSubject, catchError, Observable, tap, throwError} from "rxjs";
 import {CustomResponse} from "../models/custom-response";
 import {NoteType} from "../models/note-type";
 import {SaveNoteRequest} from "../models/save-note-request";
 import {UpdateNoteRequest} from "../models/update-note-request";
+import {ApiConfiguration} from "../config/api-configuration";
 
 @Injectable({
   providedIn: 'root'
@@ -17,8 +18,18 @@ export class NotesService {
 
 
   constructor(private http:HttpClient) {
+    let jwt= localStorage.getItem('access_token');
+    const headers = new HttpHeaders()
+      .set('Content-Type', 'application/json') // Example: Setting Content-Type to JSON
+      .set('Authorization',`Bearer ${jwt}`)
+      .set("Access-Control-Allow-Origin","http://localhost:4200");
+
+    console.log(headers);
+
+
+
     this.notes$.next(
-      <Observable<CustomResponse>>this.http.get<CustomResponse>(`http://localhost:8080/notes?page=${this.page}&search=${this.search}`).pipe(
+      <Observable<CustomResponse>>this.http.get<CustomResponse>(`http://localhost:8080/api/v1/notes?page=${this.page}&search=${this.search}`,{headers}).pipe(
         // tap(console.log),
         catchError(this.handleError)
       )
@@ -46,7 +57,7 @@ export class NotesService {
 
   }
  private getRequestForAllNotes(){
-   this.notes$.next(this.http.get<CustomResponse>(`http://localhost:8080/notes?page=${this.page}&search=${this.search}&note_type=${this.noteType}`).pipe(
+   this.notes$.next(this.http.get<CustomResponse>(`${ApiConfiguration.noteResourceUrl}?page=${this.page}&search=${this.search}&note_type=${this.noteType}`).pipe(
        // tap(console.log),
        catchError(this.handleError)
      )
@@ -54,18 +65,18 @@ export class NotesService {
  }
 
   saveNote(saveNoteRequest:SaveNoteRequest){
-   return  this.http.post('http://localhost:8080/notes',saveNoteRequest).pipe(
+   return  this.http.post('${ApiConfiguration.noteResourceUrl}',saveNoteRequest).pipe(
       // tap(console.log),
       catchError(this.handleError)
     )
  }
 
   updateNote(value: UpdateNoteRequest,noteId:string) {
-    this.http.put(`http://localhost:8080/notes/${noteId}`,value).subscribe();
+    this.http.put(`${ApiConfiguration.noteResourceUrl}/${noteId}`,value).subscribe();
   }
 
   getTotalItems() {
-    return this.http.get<CustomResponse>(`http://localhost:8080/notes/total?search=${this.search}&note_type=${this.noteType}`);
+    return this.http.get<CustomResponse>(`${ApiConfiguration.noteResourceUrl}/total?search=${this.search}&note_type=${this.noteType}`);
   }
 
 
@@ -74,7 +85,7 @@ export class NotesService {
     this.page=page-1;
 
     this.notes$.next(
-      <Observable<CustomResponse>>this.http.get<CustomResponse>(`http://localhost:8080/notes?page=${this.page}&search=${this.search}&note_type=${this.noteType}`)
+      <Observable<CustomResponse>>this.http.get<CustomResponse>(`${ApiConfiguration.noteResourceUrl}?page=${this.page}&search=${this.search}&note_type=${this.noteType}`)
     )
   }
 }
