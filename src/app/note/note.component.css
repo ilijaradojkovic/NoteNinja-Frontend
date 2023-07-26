@@ -2,6 +2,14 @@
   box-shadow: 2px 2px 10px #d2d2d2;
 
 }
+.fa-trash:hover{
+  transition:  300ms;
+  color:red;
+}
+.fa-star{
+  transition:  300ms;
+
+}
 .card {
   position: relative;
   display: flex;

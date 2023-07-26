@@ -6,6 +6,7 @@ import {NoteType} from "../models/note-type";
 import {SaveNoteRequest} from "../models/save-note-request";
 import {UpdateNoteRequest} from "../models/update-note-request";
 import {ApiConfiguration} from "../config/api-configuration";
+import {FilterNoteType} from "../models/filter-note-type";
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +14,7 @@ import {ApiConfiguration} from "../config/api-configuration";
 export class NotesService {
   private page:number=0;
   private search:string='';
-  private noteType:NoteType=NoteType.ALL;
+  private noteType:FilterNoteType=FilterNoteType.ALL;
   public notes$:BehaviorSubject<Observable<CustomResponse>> = new BehaviorSubject(new Observable<CustomResponse>()) ;
 
 
@@ -41,7 +42,7 @@ export class NotesService {
     return throwError('Method not implemented')
   }
 
-  noteTypeChanged(activeNoteType: NoteType) {
+  noteTypeChanged(activeNoteType: FilterNoteType) {
   if(this.noteType!=activeNoteType) {
     this.noteType=activeNoteType;
     this.getRequestForAllNotes();
@@ -65,7 +66,7 @@ export class NotesService {
  }
 
   saveNote(saveNoteRequest:SaveNoteRequest){
-   return  this.http.post('${ApiConfiguration.noteResourceUrl}',saveNoteRequest).pipe(
+   return  this.http.post(ApiConfiguration.noteResourceUrl,saveNoteRequest).pipe(
       // tap(console.log),
       catchError(this.handleError)
     )
@@ -87,5 +88,15 @@ export class NotesService {
     this.notes$.next(
       <Observable<CustomResponse>>this.http.get<CustomResponse>(`${ApiConfiguration.noteResourceUrl}?page=${this.page}&search=${this.search}&note_type=${this.noteType}`)
     )
+  }
+
+  deleteNote(id: string) {
+    this.http.delete(`${ApiConfiguration.noteResourceUrl}/${id}`).subscribe();
+  }
+
+  toggleFavorites(id: string, favorites: boolean) {
+
+
+  this.http.patch(`${ApiConfiguration.noteResourceUrl}/favorites/${id}?favorite=${favorites}`,null).subscribe();
   }
 }

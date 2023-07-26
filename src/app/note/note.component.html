@@ -15,8 +15,8 @@
          data-notecontent="Blandit tempus porttitor aasfs. Integer posuere erat a ante venenatis.">{{note.description | longText}}</p>
     </div>
     <div class="d-flex align-items-center">
-      <span class="mr-1"><i class="fa-regular fa-star me-2"></i></span>
-      <span class="mr-1"><i class="fa fa-trash remove-note"></i></span>
+      <span class="mr-1 " (click)="toggleFavorites(note.id,!note.isFavorite,$event)" style="cursor: pointer;z-index: 5;"><i (mouseleave)="leaveFavorites(favorites)" (mouseenter)="eneterFavorites(favorites)" #favorites  [ngClass]="{'fa-regular':!note.isFavorite,'fa-solid':note.isFavorite}" class=" fa-star fa-lg me-2"></i></span>
+      <span class="mr-1" (click)="deleteNote(note.id,$event)"   style="cursor: pointer;z-index: 5;" ><i   class="fa fa-trash remove-note fa-lg"></i></span>
     </div>
   </div>
 
