@@ -40,6 +40,7 @@ export class SaveNoteComponent implements OnInit,OnDestroy{
        )
        .subscribe((x)=>{},(e)=>{},()=>{
        this.modalService.closeModal(this.modalId);
+       form.reset()
      });
 
   }

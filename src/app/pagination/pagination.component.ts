@@ -30,13 +30,23 @@ export class PaginationComponent implements OnInit{
   }
 
 
+  canGoBack() {
+    return 0 != this.currentPage - 1
+  }
+    canGoForward(){
+    return this.totalPages>=this.currentPage+1
+    }
+
 
   backPage() {
+    if(!this.canGoBack()) return;
+
     this.currentPage--;
     this.getNotesForCurrPage();
   }
 
   nextPage() {
+    if(!this.canGoForward()) return;
     this.currentPage++;
     this.getNotesForCurrPage();
   }

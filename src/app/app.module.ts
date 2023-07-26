@@ -29,7 +29,7 @@ export function playerFactory(): any {
 }
 
 const  routes:Routes=[
-  {path:'',component:NotesComponent},
+  {path:'',redirectTo:'/login',pathMatch:"full"},
   {path:'notes',component:NotesComponent},
   {path:'login',component:LoginComponent},
   {path:'register',component:RegisterComponent},
