@@ -1,0 +1,77 @@
+<div class="d-flex justify-content-center align-items-center h-100">
+
+
+  <section>
+    <div class="container-fluid h-custom">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col-md-9 col-lg-6 col-xl-5">
+          <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.webp"
+               class="img-fluid" alt="Sample image">
+        </div>
+        <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
+
+          <h1 class="text-center" style="color: #2A2F4F">Sign up</h1>
+          <form #form="ngForm" (ngSubmit)="signup(form) ">
+
+
+            <div class="divider d-flex align-items-center my-4">
+              <p class="text-center fw-bold mx-3 mb-0"></p>
+            </div>
+
+            <!-- Email input -->
+            <div class="form-outline mb-4">
+              <input email required name="email" ngModel type="email" id="email" class="form-control form-control-lg"
+                     placeholder="Enter a valid email address"/>
+              <label class="form-label" for="email">Email address</label>
+            </div>
+            <div class="form-outline mb-4">
+              <input email required name="username" ngModel type="text" id="username"
+                     class="form-control form-control-lg"
+                     placeholder="Enter username"/>
+              <label class="form-label" for="username">Username</label>
+            </div>
+
+
+            <!-- Password input -->
+            <div class="form-outline mb-4">
+              <input required name="password" ngModel type="password" id="password" class="form-control form-control-lg"
+                     placeholder="Enter password"/>
+
+
+              <div class="d-flex justify-content-between">
+                <label class="form-label" for="password">Password</label>
+              </div>
+
+            </div>
+            <div class="form-outline mb-4">
+              <input required name="confirm-password" ngModel type="password" id="confirm-password"
+                     class="form-control form-control-lg"
+                     placeholder="Confirm password"/>
+
+
+              <div class="d-flex justify-content-between">
+                <label class="form-label" for="confirm-password">Confirm password</label>
+              </div>
+
+            </div>
+
+
+            <div class="text-center text-lg-start mt-4 pt-2 d-flex justify-content-center flex-column">
+              <button type="submit" class="btn btn-primary btn-lg w-100"
+                      style="padding-left: 2.5rem; padding-right: 2.5rem;background: #2A2F4F" [ngStyle]="{'disabled':loading
+
+                                                                                                                      }">
+                <span *ngIf="loading" class="loader"></span>
+
+                <span *ngIf="!loading">Register</span>
+              </button>
+            </div>
+
+
+          </form>
+        </div>
+      </div>
+    </div>
+
+  </section>
+</div>

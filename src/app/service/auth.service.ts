@@ -5,6 +5,7 @@ import {CustomResponse} from "../models/custom-response";
 import {ApiConfiguration} from "../config/api-configuration";
 import {BehaviorSubject, catchError, firstValueFrom} from "rxjs";
 import {LoginResponse} from "../models/login-response";
+import {RegisterCredentials} from "../models/register-credentials";
 
 @Injectable({
   providedIn: 'root'
@@ -33,5 +34,9 @@ export class AuthService {
     this.isLogin$.next(false);
     localStorage.clear();
 
+  }
+
+  async signup(credentials: RegisterCredentials) {
+    this.http.post(`${ApiConfiguration.authUrl}/signup`,credentials).subscribe()
   }
 }
