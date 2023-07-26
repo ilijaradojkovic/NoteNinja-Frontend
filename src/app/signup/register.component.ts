@@ -8,10 +8,10 @@ import {RegisterCredentials} from "../models/register-credentials";
 
 @Component({
   selector: 'app-signup',
-  templateUrl: './signup.component.html',
-  styleUrls: ['./signup.component.css']
+  templateUrl: './register.component.html',
+  styleUrls: ['./register.component.css']
 })
-export class SignupComponent {
+export class RegisterComponent {
 
   private credentials:RegisterCredentials;
   public loading=false;

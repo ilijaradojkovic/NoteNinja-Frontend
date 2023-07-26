@@ -22,7 +22,7 @@ import {noteDetailsResolver} from "./resolver/note-details.resolver";
 import { PaginationComponent } from './pagination/pagination.component';
 import {AuthInterceptor, AuthTokenInterceptor} from "./interceptor/auth-token.interceptor";
 import {LottieModule} from "ngx-lottie";
-import { SignupComponent } from './signup/signup.component';
+import { RegisterComponent } from './signup/register.component';
 
 export function playerFactory(): any {
   return import('lottie-web');
@@ -32,7 +32,7 @@ const  routes:Routes=[
   {path:'',component:NotesComponent},
   {path:'notes',component:NotesComponent},
   {path:'login',component:LoginComponent},
-  {path:'signup',component:SignupComponent},
+  {path:'register',component:RegisterComponent},
   {path:'note/:id',component:NoteDetailsComponent,resolve: {note:noteDetailsResolver}},
   {path:'**',component:PageNotFoundComponent}
 ]
@@ -52,7 +52,7 @@ const  routes:Routes=[
     SaveNoteComponent,
     NoteDetailsComponent,
     PaginationComponent,
-    SignupComponent,
+    RegisterComponent,
   ],
   imports: [
     BrowserModule,

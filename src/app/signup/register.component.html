@@ -20,12 +20,15 @@
 
             <!-- Email input -->
             <div class="form-outline mb-4">
-              <input email required name="email" ngModel type="email" id="email" class="form-control form-control-lg"
+              <input email required name="email" #email="ngModel" ngModel type="email" id="email" class="form-control form-control-lg"
+                     [ngClass]="{'error-input': email.errors && email.touched }"
                      placeholder="Enter a valid email address"/>
               <label class="form-label" for="email">Email address</label>
+
             </div>
             <div class="form-outline mb-4">
-              <input email required name="username" ngModel type="text" id="username"
+              <input  required name="username" #username="ngModel" ngModel type="text" id="username"
+                     [ngClass]="{'error-input': username.errors && username.touched }"
                      class="form-control form-control-lg"
                      placeholder="Enter username"/>
               <label class="form-label" for="username">Username</label>
@@ -34,7 +37,11 @@
 
             <!-- Password input -->
             <div class="form-outline mb-4">
-              <input required name="password" ngModel type="password" id="password" class="form-control form-control-lg"
+              <input required minLength="6" name="password" #password="ngModel" ngModel type="password" id="password"
+                     [ngClass]="{'error-input': password.errors && password.touched }"
+
+                     class="form-control form-control-lg"
+
                      placeholder="Enter password"/>
 
 
@@ -43,8 +50,12 @@
               </div>
 
             </div>
+
             <div class="form-outline mb-4">
-              <input required name="confirm-password" ngModel type="password" id="confirm-password"
+              <input required minLength="6"  #confirmpassword="ngModel"
+                     [ngClass]="{'error-input': confirmpassword.errors && confirmpassword.touched }"
+
+                      name="confirm-password" ngModel type="password" id="confirm-password"
                      class="form-control form-control-lg"
                      placeholder="Confirm password"/>
 

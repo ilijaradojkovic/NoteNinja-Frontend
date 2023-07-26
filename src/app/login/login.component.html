@@ -20,7 +20,12 @@
 
             <!-- Email input -->
             <div class="form-outline mb-4">
-              <input email required name="email" ngModel type="email" id="email" class="form-control form-control-lg"
+              <input email required
+                     #email="ngModel"
+                     [ngClass]="{'error-input': email.errors && email.touched }"
+
+                     name="email" ngModel
+                     type="email" id="email" class="form-control form-control-lg"
                      placeholder="Enter a valid email address"/>
               <label class="form-label" for="email">Email address</label>
             </div>
@@ -28,7 +33,10 @@
 
             <!-- Password input -->
             <div class="form-outline mb-4">
-              <input required name="password" ngModel type="email" id="password" class="form-control form-control-lg"
+              <input required name="password"
+                     #password="ngModel"
+                     [ngClass]="{'error-input': password.errors && password.touched }"
+                     ngModel type="email" id="password" class="form-control form-control-lg"
                      placeholder="Enter a valid email address"/>
 
 
@@ -68,7 +76,7 @@
                 <span *ngIf="!loading">Login</span>
               </button>
               <div class="w-100  d-flex justify-content-center">
-                <p class="small fw-bold mt-2 pt-1 mb-0">Don't have an account? <a href="#!"
+                <p class="small fw-bold mt-2 pt-1 mb-0">Don't have an account? <a [routerLink]="['/register']"
                                                                                   class="link-danger">Register</a></p>
 
               </div>
