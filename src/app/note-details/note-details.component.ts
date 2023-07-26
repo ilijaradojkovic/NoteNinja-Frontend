@@ -7,6 +7,7 @@ import {CustomResponse} from "../models/custom-response";
 import {NgForm} from "@angular/forms";
 import {NotesService} from "../service/notes.service";
 import {UpdateNoteRequest} from "../models/update-note-request";
+import {AlertService} from "../service/alert.service";
 
 @Component({
   selector: 'app-note-details',
@@ -19,7 +20,7 @@ export class NoteDetailsComponent implements OnInit{
   protected readonly NoteType = NoteType;
 
 
-  constructor(private activeRoute:ActivatedRoute,private router:Router,private noteService:NotesService) {
+  constructor(private alertService:AlertService,private activeRoute:ActivatedRoute,private router:Router,private noteService:NotesService) {
   }
   ngOnInit(): void {
     this.activeRoute.data.subscribe(note=>{
@@ -31,7 +32,21 @@ export class NoteDetailsComponent implements OnInit{
 
   updateNote(myform: NgForm) {
       // console.log(myform.value)
-      this.noteService.updateNote(myform.value as UpdateNoteRequest,this.note.id)
+      this.noteService.updateNote(myform.value as UpdateNoteRequest,this.note.id).subscribe(
+        response=>{
+
+        },
+            (error)=>{
+          console.log(error);
+              this.alertService.showAlert({message:'error',isError:true})
+
+            },
+        ()=>{
+          this.alertService.showAlert({message:'Succesffully updated note!',isError:false})
+        }
+
+
+      )
   }
 
   back() {

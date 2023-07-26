@@ -36,7 +36,7 @@ export class AuthService {
 
   }
 
-  async signup(credentials: RegisterCredentials) {
-    this.http.post(`${ApiConfiguration.authUrl}/signup`,credentials).subscribe()
+   signup(credentials: RegisterCredentials) {
+    return this.http.post(`${ApiConfiguration.authUrl}/signup`,credentials)
   }
 }

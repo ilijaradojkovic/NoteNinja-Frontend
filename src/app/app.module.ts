@@ -5,7 +5,6 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { NoteComponent } from './note/note.component';
 import { NoteListComponent } from './note-list/note-list.component';
-import { CreateNoteComponent } from './create-note/create-note.component';
 import { FilterComponent } from './filter/filter.component';
 import { NavigationComponent } from './navigation/navigation.component';
 import {RouterLink, RouterModule, RouterOutlet, Routes} from "@angular/router";
@@ -22,7 +21,7 @@ import {noteDetailsResolver} from "./resolver/note-details.resolver";
 import { PaginationComponent } from './pagination/pagination.component';
 import {AuthInterceptor, AuthTokenInterceptor} from "./interceptor/auth-token.interceptor";
 import {LottieModule} from "ngx-lottie";
-import { RegisterComponent } from './signup/register.component';
+import { RegisterComponent } from './register/register.component';
 import { AlertComponent } from './alert/alert.component';
 
 export function playerFactory(): any {
@@ -43,7 +42,6 @@ const  routes:Routes=[
     LoginComponent,
     NoteComponent,
     NoteListComponent,
-    CreateNoteComponent,
     FilterComponent,
     NavigationComponent,
     PageNotFoundComponent,

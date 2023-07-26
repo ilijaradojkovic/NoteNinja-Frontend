@@ -73,7 +73,7 @@ export class NotesService {
  }
 
   updateNote(value: UpdateNoteRequest,noteId:string) {
-    this.http.put(`${ApiConfiguration.noteResourceUrl}/${noteId}`,value).subscribe();
+    return this.http.put(`${ApiConfiguration.noteResourceUrl}/${noteId}`,value);
   }
 
   getTotalItems() {
