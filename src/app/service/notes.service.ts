@@ -1,8 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpErrorResponse, HttpHeaders} from "@angular/common/http";
-import {BehaviorSubject, catchError, Observable, tap, throwError} from "rxjs";
+import {BehaviorSubject, catchError, Observable, throwError} from "rxjs";
 import {CustomResponse} from "../models/custom-response";
-import {NoteType} from "../models/note-type";
 import {SaveNoteRequest} from "../models/save-note-request";
 import {UpdateNoteRequest} from "../models/update-note-request";
 import {ApiConfiguration} from "../config/api-configuration";
@@ -30,7 +29,7 @@ export class NotesService {
 
 
     this.notes$.next(
-      <Observable<CustomResponse>>this.http.get<CustomResponse>(`http://localhost:8080/api/v1/notes?page=${this.page}&search=${this.search}`,{headers}).pipe(
+      this.http.get<CustomResponse>(`http://localhost:8080/api/v1/notes?page=${this.page}&search=${this.search}`, {headers}).pipe(
         // tap(console.log),
         catchError(this.handleError)
       )
@@ -39,15 +38,15 @@ export class NotesService {
 
   private handleError(error: HttpErrorResponse) {
     console.log(error);
-    return throwError('Method not implemented')
+    return throwError(() => 'Method not implemented')
   }
 
   noteTypeChanged(activeNoteType: FilterNoteType) {
-  if(this.noteType!=activeNoteType) {
-    this.noteType=activeNoteType;
-    this.getRequestForAllNotes();
+    if(this.noteType!=activeNoteType) {
+      this.noteType=activeNoteType;
+      this.getRequestForAllNotes();
 
-  }
+    }
   }
 
   noteSearchChanged(search: string) {

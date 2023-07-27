@@ -8,6 +8,7 @@ import {NgForm} from "@angular/forms";
 import {NotesService} from "../service/notes.service";
 import {UpdateNoteRequest} from "../models/update-note-request";
 import {AlertService} from "../service/alert.service";
+import {DataNotifierService} from "../data-notifier.service";
 
 @Component({
   selector: 'app-note-details',
@@ -20,7 +21,7 @@ export class NoteDetailsComponent implements OnInit{
   protected readonly NoteType = NoteType;
 
 
-  constructor(private alertService:AlertService,private activeRoute:ActivatedRoute,private router:Router,private noteService:NotesService) {
+  constructor(private alertService:AlertService,private activeRoute:ActivatedRoute,private router:Router,private noteService:NotesService,private  dataNotifier:DataNotifierService) {
   }
   ngOnInit(): void {
     this.activeRoute.data.subscribe(note=>{
@@ -43,6 +44,7 @@ export class NoteDetailsComponent implements OnInit{
             },
         ()=>{
           this.alertService.showAlert({message:'Succesffully updated note!',isError:false})
+          this.dataNotifier.notify();
         }
 
 

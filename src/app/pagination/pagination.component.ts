@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {NotesService} from "../service/notes.service";
 import {NoteType} from "../models/note-type";
+import {DataNotifierService} from "../data-notifier.service";
 
 @Component({
   selector: 'app-pagination',
@@ -13,9 +14,16 @@ export class PaginationComponent implements OnInit{
   currentPage:number =1;
   ngOnInit(): void {
     this.getPageNumber();
+    this.dataAlertNotifier.alert$.subscribe(
+      ()=>{
+        this.currentPage=1;
+        this.getPageNumber();
+        this.getNotesForCurrPage();
+      }
+    )
   }
 
-  constructor(private noteService:NotesService) {}
+  constructor(private noteService:NotesService,private dataAlertNotifier:DataNotifierService) {}
 
   get numberArray(): number[] {
     return Array.from({ length: this.totalPages  }, (_, index) => index);

@@ -12,6 +12,7 @@ export class AlertComponent implements OnInit{
   message:String='';
   isError:boolean=false;
 
+
   constructor(private alertService:AlertService) {}
 
 

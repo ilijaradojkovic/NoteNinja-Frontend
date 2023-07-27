@@ -4,6 +4,7 @@ import {NoteType} from "../models/note-type";
 import {Router} from "@angular/router";
 import {NotesService} from "../service/notes.service";
 import {AlertService} from "../service/alert.service";
+import {DataNotifierService} from "../data-notifier.service";
 
 @Component({
   selector: 'app-note',
@@ -15,7 +16,7 @@ export class NoteComponent implements OnInit{
   @Input() note:Note;
   noteColor:string='black';
 
-  constructor(private alertService:AlertService,private router:Router,private noteService:NotesService) {
+  constructor(private alertService:AlertService,private router:Router,private noteService:NotesService,private dataNotifier:DataNotifierService) {
   }
   getNoteColor() {
     switch (this.note.noteType){
@@ -42,6 +43,7 @@ export class NoteComponent implements OnInit{
       },
       ()=>{
         this.alertService.showAlert({message:'Successfully deleted.',isError:false})
+        this.dataNotifier.notify();
       }
     );
     $event.stopPropagation();

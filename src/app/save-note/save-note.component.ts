@@ -5,6 +5,7 @@ import {SaveNoteRequest} from "../models/save-note-request";
 import {NoteType} from "../models/note-type";
 import {NotesService} from "../service/notes.service";
 import {AlertService} from "../service/alert.service";
+import {DataNotifierService} from "../data-notifier.service";
 
 @Component({
   selector: 'app-save-note',
@@ -16,7 +17,7 @@ export class SaveNoteComponent implements OnInit,OnDestroy{
   private modalId:string='save-note-modal';
   isLockedNote:boolean=false;
 
-  constructor(private alertService:AlertService,private modalService:ModalService,private noteService:NotesService) {}
+  constructor(private alertService:AlertService,private modalService:ModalService,private noteService:NotesService,private dataNotifier:DataNotifierService) {}
 
   ngOnDestroy(): void {
     this.modalService.unregister(this.modalId);
@@ -40,13 +41,13 @@ export class SaveNoteComponent implements OnInit,OnDestroy{
 
          },
          (e)=>{
-          this.alertService.showAlert({message:'',isError:true})
+          this.alertService.showAlert({message:'',isError:true});
          },
          ()=>{
-       this.modalService.closeModal(this.modalId);
-           this.alertService.showAlert({message:'Successfully created!',isError:false})
-
-           form.reset()
+           this.modalService.closeModal(this.modalId);
+           this.alertService.showAlert({message:'Successfully created!',isError:false});
+           this.dataNotifier.notify()
+           form.reset();
      });
 
   }
