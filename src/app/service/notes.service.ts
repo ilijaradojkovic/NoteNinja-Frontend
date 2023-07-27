@@ -91,12 +91,12 @@ export class NotesService {
   }
 
   deleteNote(id: string) {
-    this.http.delete(`${ApiConfiguration.noteResourceUrl}/${id}`).subscribe();
+   return this.http.delete(`${ApiConfiguration.noteResourceUrl}/${id}`);
   }
 
   toggleFavorites(id: string, favorites: boolean) {
 
 
-  this.http.patch(`${ApiConfiguration.noteResourceUrl}/favorites/${id}?favorite=${favorites}`,null).subscribe();
+  return this.http.patch(`${ApiConfiguration.noteResourceUrl}/favorites/${id}?favorite=${favorites}`,null)
   }
 }

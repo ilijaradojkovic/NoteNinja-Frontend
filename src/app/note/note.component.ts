@@ -3,6 +3,7 @@ import {Note} from "../models/note";
 import {NoteType} from "../models/note-type";
 import {Router} from "@angular/router";
 import {NotesService} from "../service/notes.service";
+import {AlertService} from "../service/alert.service";
 
 @Component({
   selector: 'app-note',
@@ -14,7 +15,7 @@ export class NoteComponent implements OnInit{
   @Input() note:Note;
   noteColor:string='black';
 
-  constructor(private router:Router,private noteService:NotesService) {
+  constructor(private alertService:AlertService,private router:Router,private noteService:NotesService) {
   }
   getNoteColor() {
     switch (this.note.noteType){
@@ -34,12 +35,31 @@ export class NoteComponent implements OnInit{
   }
 
   deleteNote(id: string, $event: MouseEvent) {
-    this.noteService.deleteNote(id);
+    this.noteService.deleteNote(id).subscribe(
+      request=>{},
+      error => {
+        this.alertService.showAlert({message:'Could not delete.Try again later.',isError:true})
+      },
+      ()=>{
+        this.alertService.showAlert({message:'Successfully deleted.',isError:false})
+      }
+    );
     $event.stopPropagation();
+
   }
 
   toggleFavorites(id: string, favorites: boolean, $event: MouseEvent) {
-    this.noteService.toggleFavorites(id,favorites);
+    this.noteService.toggleFavorites(id,favorites).subscribe(
+      (response)=>{},
+      error => {
+        this.alertService.showAlert({message:(favorites)? 'Could not add to favorites.Try again later.': 'Could not remove from favorites.Try again later.',isError:true})
+
+      },
+      ()=>{
+        this.alertService.showAlert({message:(favorites)? 'Note added to favorites.': 'Note removed from favorites.',isError:false})
+
+      }
+    );
     this.note.isFavorite=favorites;
     $event.stopPropagation();
   }
