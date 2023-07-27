@@ -23,6 +23,7 @@ import {AuthInterceptor, AuthTokenInterceptor} from "./interceptor/auth-token.in
 import {LottieModule} from "ngx-lottie";
 import { RegisterComponent } from './register/register.component';
 import { AlertComponent } from './alert/alert.component';
+import {authGuardGuard} from "./guard/auth-guard.guard";
 
 export function playerFactory(): any {
   return import('lottie-web');
@@ -30,10 +31,10 @@ export function playerFactory(): any {
 
 const  routes:Routes=[
   {path:'',redirectTo:'/login',pathMatch:"full"},
-  {path:'notes',component:NotesComponent},
+  {path:'notes',component:NotesComponent,canActivate:[authGuardGuard]},
   {path:'login',component:LoginComponent},
   {path:'register',component:RegisterComponent},
-  {path:'note/:id',component:NoteDetailsComponent,resolve: {note:noteDetailsResolver}},
+  {path:'note/:id',component:NoteDetailsComponent,resolve: {note:noteDetailsResolver},canActivate:[authGuardGuard]},
   {path:'**',component:PageNotFoundComponent}
 ]
 @NgModule({
