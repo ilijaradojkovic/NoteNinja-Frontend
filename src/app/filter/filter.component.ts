@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Output} from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {NoteType} from "../models/note-type";
 import {Note} from "../models/note";
 import {NgForm} from "@angular/forms";
@@ -14,8 +14,8 @@ import {FilterNoteType} from "../models/filter-note-type";
 })
 export class FilterComponent {
 
-   activeNoteType:FilterNoteType=FilterNoteType.ALL;
-   searchText:string=null;
+  @Input() activeNoteType:FilterNoteType;
+  @Input() searchText:string;
 
 
   @Output() activeNoteTypeEvent:EventEmitter<FilterNoteType>=new EventEmitter();

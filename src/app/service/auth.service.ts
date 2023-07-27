@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable, OnDestroy} from '@angular/core';
 import {LoginCredentials} from "../models/login-credentials";
 import {HttpClient} from "@angular/common/http";
 import {CustomResponse} from "../models/custom-response";
@@ -39,4 +39,8 @@ export class AuthService {
    signup(credentials: RegisterCredentials) {
     return this.http.post(`${ApiConfiguration.authUrl}/signup`,credentials)
   }
+
+
 }
+
+

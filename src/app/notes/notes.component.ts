@@ -1,6 +1,5 @@
 import {Component, ViewChild} from '@angular/core';
 import {NotesService} from "../service/notes.service";
-import {NoteType} from "../models/note-type";
 import {PaginationComponent} from "../pagination/pagination.component";
 import {FilterNoteType} from "../models/filter-note-type";
 
@@ -11,8 +10,8 @@ import {FilterNoteType} from "../models/filter-note-type";
 })
 export class NotesComponent {
 
-  private activeNoteType:FilterNoteType;
-  private searchText: string;
+   activeNoteType:FilterNoteType=this.noteService.noteType;
+   searchText: string=this.noteService.search;
   @ViewChild("pagination") paginationComponent: PaginationComponent;
   constructor(private noteService:NotesService){}
 

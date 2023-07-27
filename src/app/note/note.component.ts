@@ -32,7 +32,10 @@ export class NoteComponent implements OnInit{
   }
 
   navigateToDetails(id: string) {
-    this.router.navigate(['/note',id]);
+    let isLocked=this.note.isLocked;
+    let password="123456"
+
+    this.router.navigate(['/note',id],{queryParams:{'isLocked':isLocked,'password':password}});
   }
 
   deleteNote(id: string, $event: MouseEvent) {

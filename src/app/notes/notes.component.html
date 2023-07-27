@@ -1,6 +1,6 @@
 <div class=" w-100 d-flex flex-column h-100 ">
   <div class="container py-4 ">
-    <app-filter (searchTextEvent)="handleEmitedSearchText($event)" (activeNoteTypeEvent)="handleEmitedNoteType($event)"></app-filter>
+    <app-filter [searchText]="searchText" [activeNoteType]="activeNoteType" (searchTextEvent)="handleEmitedSearchText($event)" (activeNoteTypeEvent)="handleEmitedNoteType($event)"></app-filter>
     <app-pagination #pagination ></app-pagination>
     <app-note-list></app-note-list>
     <app-save-note></app-save-note>

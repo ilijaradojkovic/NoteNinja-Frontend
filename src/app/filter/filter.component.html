@@ -46,7 +46,7 @@
 
   <div class="d-flex justify-content-end flex-fill align-items-center">
     <div class="input-group w-50 mx-5 col-2 ">
-      <input type="text" #searchTextInput class="form-control" placeholder="Search" aria-label="Recipient's username" aria-describedby="basic-addon2">
+      <input [value]="searchText" type="text" #searchTextInput class="form-control" placeholder="Search" aria-label="Recipient's username" aria-describedby="basic-addon2">
       <div class="input-group-append">
         <button class="btn btn-outline-secondary" (click)="searchTextChanged(searchTextInput)" type="button">Search
         </button>

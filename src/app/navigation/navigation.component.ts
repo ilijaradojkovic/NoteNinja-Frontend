@@ -17,4 +17,12 @@ export class NavigationComponent {
     this.authService.logout();
     this.router.navigate(['login'])
   }
+
+  handleLogoClick() {
+      if(this.authService.isLogin$.getValue()){
+        this.router.navigate(['notes'])
+      }else{
+        this.router.navigate(['login'])
+      }
+  }
 }

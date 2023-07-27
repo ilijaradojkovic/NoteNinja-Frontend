@@ -45,6 +45,7 @@ export class NoteDetailsComponent implements OnInit{
         ()=>{
           this.alertService.showAlert({message:'Succesffully updated note!',isError:false})
           this.dataNotifier.notify();
+          this.router.navigate(['notes'])
         }
 
 

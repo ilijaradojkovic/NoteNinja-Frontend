@@ -18,9 +18,7 @@ export class NoteListComponent implements OnInit{
   constructor(private noteService:NotesService) {}
 
   ngOnInit(): void {
-    this.noteService.notes$.subscribe((next)=>{
-      // console.log(next);
-    })
+
 
     this.noteService.notes$.subscribe(next=>{
 
@@ -40,5 +38,5 @@ export class NoteListComponent implements OnInit{
 
 
   }
-  
+
 }

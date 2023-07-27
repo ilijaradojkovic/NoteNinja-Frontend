@@ -2,23 +2,23 @@
   <div class="  align-items-center d-flex justify-content-start col-6">
     <li>
       <nav class=" px-4 navbar navbar-light">
-        <a class="navbar-brand text-white" href="#">NoteNinja</a>
+        <a class="navbar-brand text-white" (click)="handleLogoClick()" >NoteNinja</a>
       </nav>
     </li>
   </div>
   <div class=" px-4 col-6 d-flex justify-content-end align-items-center">
     <li class="nav-item mx-1 ">
-      <a class="nav-link text-white" routerLinkActive="active-route"  routerLink="login" *ngIf="!(authService.isLogin$ | async) " [routerLinkActiveOptions]="{exact: true}">Login</a>
+      <a class="nav-link text-white" routerLinkActive="active-route"  [routerLink]="['login']" *ngIf="!(authService.isLogin$ | async) " [routerLinkActiveOptions]="{exact: true}">Login</a>
     </li>
     <li class="nav-item mx-1 ">
-      <a class="nav-link  text-white" routerLinkActive="active-route"  routerLink="register" *ngIf="!(authService.isLogin$ | async) " [routerLinkActiveOptions]="{exact: true}">Register</a>
+      <a class="nav-link  text-white" routerLinkActive="active-route"  [routerLink]="['register']" *ngIf="!(authService.isLogin$ | async) " [routerLinkActiveOptions]="{exact: true}">Register</a>
     </li>
     <li class="mx-1 nav-item">
-      <a class="nav-link text-white" routerLinkActive="active-route" routerLink="notes"  *ngIf="(authService.isLogin$ | async)" [routerLinkActiveOptions]="{exact: true}">Notes</a>
+      <a class="nav-link text-white" routerLinkActive="active-route" [routerLink]="['notes']"  *ngIf="(authService.isLogin$ | async)" [routerLinkActiveOptions]="{exact: true}">Notes</a>
     </li>
 
     <li class="nav-item ms-3">
-      <a class="nav-link text-white" routerLinkActive="active-route"  routerLink="login" *ngIf="(authService.isLogin$ | async)" [routerLinkActiveOptions]="{exact: true}" (click)="logout()">Logout</a>
+      <a class="nav-link text-white" routerLinkActive="active-route"  [routerLink]="['login']" *ngIf="(authService.isLogin$ | async)" [routerLinkActiveOptions]="{exact: true}" (click)="logout()">Logout</a>
     </li>
   </div>
 

@@ -33,7 +33,6 @@ export class PaginationComponent implements OnInit{
 
      let totalItems=total.data['total'] as number;
       this.totalPages=this.customRound(totalItems/this.itemsPerPage);
-      console.log(this.totalPages)
     });
   }
 

@@ -12,8 +12,8 @@ import {FilterNoteType} from "../models/filter-note-type";
 })
 export class NotesService {
   private page:number=0;
-  private search:string='';
-  private noteType:FilterNoteType=FilterNoteType.ALL;
+   search:string='';
+   noteType:FilterNoteType=FilterNoteType.ALL;
   public notes$:BehaviorSubject<Observable<CustomResponse>> = new BehaviorSubject(new Observable<CustomResponse>()) ;
 
 
@@ -24,7 +24,6 @@ export class NotesService {
       .set('Authorization',`Bearer ${jwt}`)
       .set("Access-Control-Allow-Origin","http://localhost:4200");
 
-    console.log(headers);
 
 
 

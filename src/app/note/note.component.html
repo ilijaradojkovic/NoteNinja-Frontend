@@ -3,6 +3,7 @@
   <div  style="--size:{{ noteColor }}"
 
              (click)="navigateToDetails(note.id)" class="card elevate-card card-body m-3 rounded-3 my-note" >
+<!--    <p *ngIf="note.isLocked">locked</p>-->
     <div class="position-absolute start-0" [style.background-color]="noteColor" style="top:13%;width: 5px;height: 40px"><p></p></div>
     <span class="side-stick"></span>
     <h5 class="note-title text-truncate w-75 mb-0" data-noteheading="Go for lunch">{{note.title}} <i
