@@ -17,16 +17,16 @@ export class AuthService {
 
   }
 
-  public async login(credentials:LoginCredentials){
+  public  login(credentials:LoginCredentials){
 
-      await firstValueFrom(this.http.post<CustomResponse>(`${ApiConfiguration.authUrl}/signin`, credentials)).then(response=>{
-          let loginResponse= <LoginResponse> response.data;
-          localStorage.setItem('refresh_token',loginResponse.refresh_token);
-          localStorage.setItem('access_token',loginResponse.jwt);
-          this.isLogin$.next(true);
-
-      });
-
+      // await firstValueFrom(this.http.post<CustomResponse>(`${ApiConfiguration.authUrl}/signin`, credentials)).then(response=>{
+      //     let loginResponse= <LoginResponse> response.data;
+      //     localStorage.setItem('refresh_token',loginResponse.refresh_token);
+      //     localStorage.setItem('access_token',loginResponse.jwt);
+      //     this.isLogin$.next(true);
+      //
+      // });
+    return this.http.post<CustomResponse>(`${ApiConfiguration.authUrl}/signin`, credentials)
 
   }
 

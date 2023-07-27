@@ -4,8 +4,9 @@ import {LoginCredentials} from "../models/login-credentials";
 import {AuthService} from "../service/auth.service";
 import {Router} from "@angular/router";
 import {DataState} from "../models/data-state";
-import {delay} from "rxjs";
+import {catchError, delay, throwError} from "rxjs";
 import {AnimationOptions} from "ngx-lottie";
+import {LoginResponse} from "../models/login-response";
 
 
 @Component({
@@ -20,26 +21,33 @@ export class LoginComponent {
   options: AnimationOptions = {
     path: '/assets/lottie/loading.json'
   };
+  public showError=false;
+  public errorMessage='';
   constructor(private auth:AuthService,private router:Router) {
   }
 
 
    async login(form:NgForm) {
     this.credentials= <LoginCredentials> form.value;
-    try{
-      this.loading=true;
+
+      this.loading = true;
       await this.auth.login(this.credentials)
+        .subscribe(response => {
+        let loginResponse = <LoginResponse>response.data;
+        console.log(response)
 
-       this.router.navigate(['notes'])
+        localStorage.setItem('refresh_token', loginResponse.refresh_token);
+        localStorage.setItem('access_token', loginResponse.jwt);
+        this.auth.isLogin$.next(true)
+      }, error => {
+          this.showError = true;
+          this.errorMessage = 'User does not exist! Please register.';
+          this.loading = false;
+      }, () => {
+        this.router.navigate(['notes'])
+        this.loading = false;
 
-    }catch (e){
-      console.log(e);
-    }
-    finally {
-      this.loading=false;
-    }
-
-
+      });
 
 
    }
