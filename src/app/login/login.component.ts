@@ -3,8 +3,6 @@ import {NgForm} from "@angular/forms";
 import {LoginCredentials} from "../models/login-credentials";
 import {AuthService} from "../service/auth.service";
 import {Router} from "@angular/router";
-import {DataState} from "../models/data-state";
-import {catchError, delay, throwError} from "rxjs";
 import {AnimationOptions} from "ngx-lottie";
 import {LoginResponse} from "../models/login-response";
 

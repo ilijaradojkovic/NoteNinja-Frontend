@@ -1,9 +1,4 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
-import {NoteType} from "../models/note-type";
-import {Note} from "../models/note";
-import {NgForm} from "@angular/forms";
-import {SaveNoteRequest} from "../models/save-note-request";
-import {NotesService} from "../service/notes.service";
 import {ModalService} from "../service/modal.service";
 import {FilterNoteType} from "../models/filter-note-type";
 

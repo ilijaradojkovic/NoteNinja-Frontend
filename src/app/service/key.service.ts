@@ -1,6 +1,5 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import * as forge from 'node-forge';
-import * as fs from "fs";
 import {HttpClient} from "@angular/common/http";
 
 @Injectable({

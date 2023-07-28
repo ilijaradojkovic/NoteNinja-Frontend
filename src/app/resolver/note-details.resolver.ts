@@ -1,10 +1,11 @@
-import {ActivatedRouteSnapshot, Resolve,RouterStateSnapshot} from '@angular/router';
+import {ActivatedRouteSnapshot, Resolve, RouterStateSnapshot} from '@angular/router';
 import {HttpClient} from "@angular/common/http";
 import {CustomResponse} from "../models/custom-response";
 import {Observable} from "rxjs";
 import {Injectable} from "@angular/core";
 import {ApiConfiguration} from "../config/api-configuration";
 import {KeyService} from "../service/key.service";
+
 @Injectable({
   providedIn: 'root'
 })

@@ -1,10 +1,9 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {NotesService} from "../service/notes.service";
 import {catchError, map, Observable, of, startWith} from "rxjs";
 import {AppState} from "../models/app-state";
 import {CustomResponse} from "../models/custom-response";
 import {DataState} from "../models/data-state";
-import {error} from "@angular/compiler-cli/src/transformers/util";
 
 @Component({
   selector: 'app-note-list',

@@ -1,10 +1,9 @@
-import {Injectable, OnDestroy} from '@angular/core';
+import {Injectable} from '@angular/core';
 import {LoginCredentials} from "../models/login-credentials";
 import {HttpClient} from "@angular/common/http";
 import {CustomResponse} from "../models/custom-response";
 import {ApiConfiguration} from "../config/api-configuration";
-import {BehaviorSubject, catchError, firstValueFrom} from "rxjs";
-import {LoginResponse} from "../models/login-response";
+import {BehaviorSubject} from "rxjs";
 import {RegisterCredentials} from "../models/register-credentials";
 
 @Injectable({

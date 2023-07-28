@@ -1,4 +1,4 @@
-import { ApiConfiguration } from './api-configuration';
+import {ApiConfiguration} from './api-configuration';
 
 describe('HttpConfiguration', () => {
   it('should create an instance', () => {

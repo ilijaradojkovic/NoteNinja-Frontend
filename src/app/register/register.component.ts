@@ -1,5 +1,4 @@
 import {Component, ViewChild} from '@angular/core';
-import {LoginCredentials} from "../models/login-credentials";
 import {AnimationOptions} from "ngx-lottie";
 import {AuthService} from "../service/auth.service";
 import {Router} from "@angular/router";
@@ -8,7 +7,7 @@ import {RegisterCredentials} from "../models/register-credentials";
 import {AlertComponent} from "../alert/alert.component";
 import {AlertService} from "../service/alert.service";
 import {AlertDto} from "../models/alert-dto";
-import {catchError, of, throwError} from "rxjs";
+import {catchError, throwError} from "rxjs";
 import {HttpErrorResponse} from "@angular/common/http";
 
 @Component({
