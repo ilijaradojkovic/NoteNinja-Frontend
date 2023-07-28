@@ -16,9 +16,6 @@ export class LoginComponent {
 
   private credentials:LoginCredentials;
   public loading=false;
-  options: AnimationOptions = {
-    path: '/assets/lottie/loading.json'
-  };
   public showError=false;
   public errorMessage='';
   constructor(private auth:AuthService,private router:Router) {

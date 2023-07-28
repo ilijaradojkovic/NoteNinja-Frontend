@@ -4,7 +4,7 @@ import {NoteType} from "../models/note-type";
 import {Router} from "@angular/router";
 import {NotesService} from "../service/notes.service";
 import {AlertService} from "../service/alert.service";
-import {DataNotifierService} from "../data-notifier.service";
+import {DataNotifierService} from "../service/data-notifier.service";
 import {ModalService} from "../service/modal.service";
 import {PasswordModalComponent} from "../password-modal/password-modal.component";
 

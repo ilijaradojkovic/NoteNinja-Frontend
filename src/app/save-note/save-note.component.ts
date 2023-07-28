@@ -5,7 +5,7 @@ import {SaveNoteRequest} from "../models/save-note-request";
 import {NoteType} from "../models/note-type";
 import {NotesService} from "../service/notes.service";
 import {AlertService} from "../service/alert.service";
-import {DataNotifierService} from "../data-notifier.service";
+import {DataNotifierService} from "../service/data-notifier.service";
 
 @Component({
   selector: 'app-save-note',

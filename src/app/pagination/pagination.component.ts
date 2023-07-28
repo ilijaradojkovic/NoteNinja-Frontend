@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {NotesService} from "../service/notes.service";
-import {DataNotifierService} from "../data-notifier.service";
+import {DataNotifierService} from "../service/data-notifier.service";
 
 @Component({
   selector: 'app-pagination',

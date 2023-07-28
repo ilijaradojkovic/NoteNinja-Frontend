@@ -6,7 +6,7 @@ import {NgForm} from "@angular/forms";
 import {NotesService} from "../service/notes.service";
 import {UpdateNoteRequest} from "../models/update-note-request";
 import {AlertService} from "../service/alert.service";
-import {DataNotifierService} from "../data-notifier.service";
+import {DataNotifierService} from "../service/data-notifier.service";
 
 @Component({
   selector: 'app-note-details',
