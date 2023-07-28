@@ -1,9 +1,7 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {NoteType} from "../models/note-type";
-import {Note} from "../models/note";
 import {ActivatedRoute, Router} from "@angular/router";
 import {NoteDetails} from "../models/note-details";
-import {CustomResponse} from "../models/custom-response";
 import {NgForm} from "@angular/forms";
 import {NotesService} from "../service/notes.service";
 import {UpdateNoteRequest} from "../models/update-note-request";

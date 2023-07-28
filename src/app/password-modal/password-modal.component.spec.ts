@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { PasswordModalComponent } from './password-modal.component';
+import {PasswordModalComponent} from './password-modal.component';
 
 describe('PasswordModalComponent', () => {
   let component: PasswordModalComponent;

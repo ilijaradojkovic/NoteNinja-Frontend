@@ -1,6 +1,5 @@
 import {Component, OnInit} from '@angular/core';
 import {NotesService} from "../service/notes.service";
-import {NoteType} from "../models/note-type";
 import {DataNotifierService} from "../data-notifier.service";
 
 @Component({

@@ -1,4 +1,4 @@
-import { LongTextPipe } from './long-text.pipe';
+import {LongTextPipe} from './long-text.pipe';
 
 describe('LongTextPipe', () => {
   it('create an instance', () => {

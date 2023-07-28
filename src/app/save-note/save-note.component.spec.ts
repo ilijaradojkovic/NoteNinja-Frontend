@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { SaveNoteComponent } from './save-note.component';
+import {SaveNoteComponent} from './save-note.component';
 
 describe('SaveNoteComponent', () => {
   let component: SaveNoteComponent;
