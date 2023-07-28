@@ -38,10 +38,9 @@ export class RegisterComponent {
         .pipe(
           catchError((error: HttpErrorResponse) => {
             let errorMsg=error.error['reason'];
-            console.error('An error occurred:', errorMsg);
             this.showAlert({message:errorMsg,isError:true});
 
-            return of();
+            return throwError(()=>"Registration was not successful!");
           })
         ).subscribe(
         (response)=>{
@@ -51,6 +50,7 @@ export class RegisterComponent {
         },
         (error)=>{
           this.showAlert({message:'Registration error!Please try again.',isError:true});
+          this.loading=false;
 
         },
       ()=>{
