@@ -24,6 +24,7 @@ import {LottieModule} from "ngx-lottie";
 import { RegisterComponent } from './register/register.component';
 import { AlertComponent } from './alert/alert.component';
 import {authGuardGuard} from "./guard/auth-guard.guard";
+import { PasswordModalComponent } from './password-modal/password-modal.component';
 
 export function playerFactory(): any {
   return import('lottie-web');
@@ -54,6 +55,7 @@ const  routes:Routes=[
     PaginationComponent,
     RegisterComponent,
     AlertComponent,
+    PasswordModalComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,26 +1,36 @@
 
 
-  <div  style="--size:{{ noteColor }}"
+  <div style="--size:{{ noteColor }}"
 
-             (click)="navigateToDetails(note.id)" class="card elevate-card card-body m-3 rounded-3 my-note" >
+       (click)="tryToNavigateToDetails()" class="card elevate-card card-body m-3 rounded-3 my-note" >
 <!--    <p *ngIf="note.isLocked">locked</p>-->
     <div class="position-absolute start-0" [style.background-color]="noteColor" style="top:13%;width: 5px;height: 40px"><p></p></div>
     <span class="side-stick"></span>
-    <h5 class="note-title text-truncate w-75 mb-0" data-noteheading="Go for lunch">{{note.title}} <i
-      class="point fa fa-circle ml-1 font-10" [style.color]="noteColor"
+    <div class="d-flex w-100 ">
+      <h5 class="note-title flex-grow-1 text-truncate w-75 mb-0" data-noteheading="Go for lunch">{{note.title}} <i
+        class="point fa fa-circle ml-1 font-10" [style.color]="noteColor"
+      ></i></h5>
+      <span class="mr-1 "  *ngIf="note.isLocked" > <i class="fa-solid fa-lock"></i></span>
 
-    ></i></h5>
-    <p class="note-date font-12 text-muted">{{note.createdAt | date}}</p>
+    </div>
+ <p class="note-date font-12 text-muted">{{note.createdAt | date}}</p>
     <div class="note-content">
       <p class="note-inner-content text-muted"
-         data-notecontent="Blandit tempus porttitor aasfs. Integer posuere erat a ante venenatis.">{{note.description | longText}}</p>
+         data-notecontent="Blandit tempus porttitor aasfs. Integer posuere erat a ante venenatis.">
+        <ng-container *ngIf="note.isLocked">
+          {{'********' | longText}}
+        </ng-container>
+        <ng-container *ngIf="!note.isLocked">
+          {{note.description | longText}}
+
+        </ng-container>
+      </p>
     </div>
     <div class="d-flex align-items-center">
       <span class="mr-1 " (click)="toggleFavorites(note.id,!note.isFavorite,$event)" style="cursor: pointer;"><i (mouseleave)="leaveFavorites(favorites)" (mouseenter)="eneterFavorites(favorites)" #favorites  [ngClass]="{'fa-regular':!note.isFavorite,'fa-solid':note.isFavorite}" class=" fa-star fa-lg me-2"></i></span>
       <span class="mr-1" (click)="deleteNote(note.id,$event)"   style="cursor: pointer;" ><i   class="fa fa-trash remove-note fa-lg"></i></span>
     </div>
   </div>
-
 
 <!--  [ngClass]="{-->
 <!--  'important': noteColor==='#D45858',-->

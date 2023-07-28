@@ -36,7 +36,6 @@ export class NotesService {
   }
 
   private handleError(error: HttpErrorResponse) {
-    console.log(error);
     return throwError(() => 'Method not implemented')
   }
 
@@ -71,6 +70,7 @@ export class NotesService {
  }
 
   updateNote(value: UpdateNoteRequest,noteId:string) {
+    console.log(value)
     return this.http.put(`${ApiConfiguration.noteResourceUrl}/${noteId}`,value);
   }
 

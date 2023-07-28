@@ -9,7 +9,7 @@ import {DataNotifierService} from "../data-notifier.service";
   styleUrls: ['./pagination.component.css']
 })
 export class PaginationComponent implements OnInit{
-  itemsPerPage:number=10;
+  itemsPerPage:number=9;
   totalPages:number=0;
   currentPage:number =1;
   ngOnInit(): void {
@@ -71,7 +71,7 @@ export class PaginationComponent implements OnInit{
   private customRound(number: number): number {
     const decimalPart = number - Math.floor(number);
     const roundedDecimal = Math.ceil(decimalPart);
-
+    console.log(decimalPart +"-"+roundedDecimal)
     return Math.floor(number) + roundedDecimal;
   }
 

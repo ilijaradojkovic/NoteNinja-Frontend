@@ -16,17 +16,24 @@ export class  noteDetailsResolver implements Resolve<Observable<CustomResponse>>
 
 
       let noteId = <string>route.params['id'];
-      // let isLocked=<boolean>route.queryParams['isLocked'];
 
 
-      // if(isLocked){
-      //   let password=<string>route.queryParams['password'];
-      //   let s = this.keyService.encryptString(password);
-      //
-      //   return <Observable<CustomResponse>> this.http.post<CustomResponse>(ApiConfiguration.noteResourceUrl+'/'+noteId,{password:s});
-      // }
 
-      return   <Observable<CustomResponse>> this.http.get<CustomResponse>(ApiConfiguration.noteResourceUrl+'/'+noteId);
+        let password=<string>route.queryParams['password'];
+      console.log(password);
+      console.log(noteId);
+      if(password != undefined){
+        console.log("ovde1")
+
+        return <Observable<CustomResponse>> this.http.post<CustomResponse>(ApiConfiguration.noteResourceUrl+'/'+noteId,{password:password});
+
+      }
+else {
+  console.log("ovde2")
+        return   <Observable<CustomResponse>> this.http.post<CustomResponse>(ApiConfiguration.noteResourceUrl+'/'+noteId,{});
+
+      }
+
 
 
 

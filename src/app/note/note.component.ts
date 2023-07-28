@@ -5,6 +5,8 @@ import {Router} from "@angular/router";
 import {NotesService} from "../service/notes.service";
 import {AlertService} from "../service/alert.service";
 import {DataNotifierService} from "../data-notifier.service";
+import {ModalService} from "../service/modal.service";
+import {PasswordModalComponent} from "../password-modal/password-modal.component";
 
 @Component({
   selector: 'app-note',
@@ -16,7 +18,7 @@ export class NoteComponent implements OnInit{
   @Input() note:Note;
   noteColor:string='black';
 
-  constructor(private alertService:AlertService,private router:Router,private noteService:NotesService,private dataNotifier:DataNotifierService) {
+  constructor(private modalService:ModalService, private alertService:AlertService,private router:Router,private noteService:NotesService,private dataNotifier:DataNotifierService) {
   }
   getNoteColor() {
     switch (this.note.noteType){
@@ -31,11 +33,21 @@ export class NoteComponent implements OnInit{
     this.getNoteColor();
   }
 
-  navigateToDetails(id: string) {
-    let isLocked=this.note.isLocked;
-    let password="123456"
+  tryToNavigateToDetails() {
 
-    this.router.navigate(['/note',id],{queryParams:{'isLocked':isLocked,'password':password}});
+    if(this.note.isLocked){
+      this.modalService.toggleModal(PasswordModalComponent.modalId);
+    }
+    else{
+      this.navigateToDetails();
+    }
+     }
+
+  navigateToDetails(){
+
+
+    this.router.navigate(['/note',this.note.id]);
+
   }
 
   deleteNote(id: string, $event: MouseEvent) {

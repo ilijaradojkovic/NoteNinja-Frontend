@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {NotesService} from "../service/notes.service";
 import {catchError, map, Observable, of, startWith} from "rxjs";
 import {AppState} from "../models/app-state";
@@ -14,8 +14,10 @@ import {error} from "@angular/compiler-cli/src/transformers/util";
 export class NoteListComponent implements OnInit{
 
   appState$: Observable<AppState<CustomResponse>> = new Observable<AppState<CustomResponse>>();
+  noteClicked:string='';
+  constructor(private noteService:NotesService) {
 
-  constructor(private noteService:NotesService) {}
+  }
 
   ngOnInit(): void {
 
@@ -38,5 +40,6 @@ export class NoteListComponent implements OnInit{
 
 
   }
+
 
 }

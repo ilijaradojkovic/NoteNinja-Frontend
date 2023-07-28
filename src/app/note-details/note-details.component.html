@@ -45,15 +45,13 @@
                   Locked
                 </label>
               </div>
-              <!--            <ng-container  *ngIf="note?.isLocked">-->
-              <!--              <div class="input-group mb-3">-->
-              <!--                <span class="input-group-text"><i class="fa fa-lock"></i></span>-->
-              <!--                <input  #passwordInput  class="form-control" id="password" name="password"-->
-              <!--                       placeholder="Password" type="password" [value]="note?.password">-->
-              <!--                <span class="input-group-text"><i  #passwordIcon class="fa fa-eye-slash" id="togglePassword" style="cursor: pointer"></i>-->
-              <!--   </span>-->
-              <!--              </div>-->
-              <!--            </ng-container>-->
+                          <ng-container  *ngIf="note?.isLocked">
+                            <div class="input-group mb-3">
+                              <input  #passwordInput ngModel class="form-control" id="password" name="password"
+                                     placeholder="Password" type="password" [value]="note?.password">
+
+                            </div>
+                          </ng-container>
 
 
             </div>

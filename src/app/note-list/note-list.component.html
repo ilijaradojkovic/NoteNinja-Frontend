@@ -17,7 +17,7 @@
           <div *ngFor="let note of appState.appData?.data?.notes"
                class="col-md-4 single-note-item all-category note-important  col-4" style="">
 
-            <app-note [note]="note"></app-note>
+            <app-note (click)="noteClicked=note.id" [note]="note"></app-note>
 
           </div>
         </ng-container>
@@ -25,6 +25,7 @@
       </div>
     </ng-container>
   </div>
+  <app-password-modal  [noteId]="noteClicked"></app-password-modal>
 
 
 </div>

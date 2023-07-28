@@ -1,4 +1,4 @@
-import {Component, ElementRef, Input} from '@angular/core';
+import {Component, ElementRef, EventEmitter, Input, Output} from '@angular/core';
 import {ModalService} from "../service/modal.service";
 
 @Component({
@@ -10,7 +10,7 @@ export class ModalComponent {
 
   @Input() modalid='';
   @Input() title='';
-
+  @Output() closeEventEmitter:EventEmitter<void>=new EventEmitter<void>()
 
   constructor(public modalService:ModalService) {
   }
@@ -21,6 +21,7 @@ export class ModalComponent {
   }
   closeModal($event: Event) {
     $event.preventDefault();
+    this.closeEventEmitter.emit();
     this.modalService.closeModal(this.modalid);
   }
 }
